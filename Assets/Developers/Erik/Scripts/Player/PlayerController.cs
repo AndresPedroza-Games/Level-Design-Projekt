@@ -4,8 +4,6 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour {
-
-    private PlayerControls controls;
     private CharacterController charController;
 
     [Header("---Cinemachine---")]
@@ -37,13 +35,13 @@ public class PlayerController : MonoBehaviour {
     private Coroutine crouchRoutine = null;
     private Coroutine capsuleRoutine = null;
 
-    //Just for Visuals
-    public GameObject body;
-
     [Header("---Gravity---")]
     [SerializeField] private float gravityMultiplier = 1f;
     [SerializeField][Range(-50f, -1f)] private float maxFallSpeed = -50f;
 
+
+    //Just for Visuals
+    public GameObject body;
 
 
 
@@ -60,23 +58,26 @@ public class PlayerController : MonoBehaviour {
 
 
     private void OnEnable() {
-        controls ??= new PlayerControls();
-        controls.Enable();
-        controls.Movement.Crouch.performed += Crouch;
-        controls.Movement.Run.performed += Run;
-    }
+        InputManager.Instance.Controls.Movement.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
+        InputManager.Instance.Controls.Movement.Move.canceled += ctx => moveInput = Vector2.zero;
 
+        InputManager.Instance.Controls.Movement.Crouch.performed += Crouch;
+        InputManager.Instance.Controls.Movement.Run.performed += Run;
+    }
 
 
     private void OnDisable() {
-        controls.Disable();
-        controls.Movement.Crouch.performed -= Crouch;
-        controls.Movement.Run.performed -= Run;
-    }
+        InputManager.Instance.Controls.Disable();
 
+        InputManager.Instance.Controls.Movement.Move.performed -= ctx => moveInput = ctx.ReadValue<Vector2>();
+        InputManager.Instance.Controls.Movement.Move.canceled -= ctx => moveInput = Vector2.zero;
+
+        InputManager.Instance.Controls.Movement.Crouch.performed -= Crouch;
+        InputManager.Instance.Controls.Movement.Run.performed -= Run;
+    }
+    
 
     private void Update() {
-        moveInput = controls.Movement.Move.ReadValue<Vector2>();
 
         HandleGravity();
         HandleMovement();
