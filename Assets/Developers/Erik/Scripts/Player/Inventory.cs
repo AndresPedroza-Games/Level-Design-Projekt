@@ -25,7 +25,7 @@ public class Inventory : MonoBehaviour {
         }
         else {
             CurrentKey = key;
-            TakeKey(key.gameObject);
+            PickUpKey(key.gameObject);
         }
     }
 
@@ -42,12 +42,12 @@ public class Inventory : MonoBehaviour {
         DropKey(CurrentKey.gameObject);
 
         CurrentKey = newKey;
-        TakeKey(newKey.gameObject);
+        PickUpKey(newKey.gameObject);
     }
 
 
 
-    private void TakeKey(GameObject key) {
+    private void PickUpKey(GameObject key) {
         key.transform.SetParent(keySocket);
         key.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
     }
@@ -55,20 +55,22 @@ public class Inventory : MonoBehaviour {
 
 
     private void DropKey(GameObject key) {
-        if (CurrentKey != null)
-            CurrentKey = null;
+        if (CurrentKey == null)
+            return;
+
+        CurrentKey = null;
+
+        if (key.TryGetComponent(out Key keyComp))
+            keyComp.EnablePhysics();
 
         key.transform.parent = null;
         key.transform.position = transform.position + transform.forward * dropOffset;
-        if (key.TryGetComponent(out Key keyComp))
-            keyComp.EnablePhysics();
     }
 
 
     private void DropKeyAction(InputAction.CallbackContext ctx) {
         if (CurrentKey != null)
             DropKey(CurrentKey.gameObject);
-
     }
 
 

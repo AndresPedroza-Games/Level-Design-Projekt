@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -75,7 +76,7 @@ public class PlayerController : MonoBehaviour {
         InputManager.Instance.Controls.Movement.Crouch.performed -= Crouch;
         InputManager.Instance.Controls.Movement.Run.performed -= Run;
     }
-    
+
 
     private void Update() {
 
@@ -204,9 +205,9 @@ public class PlayerController : MonoBehaviour {
     private bool CanStandUp() {
         float radius = charController.radius;
 
-        Vector3 end = transform.position + Vector3.up * (standingHeight - crouchHeight);
+        Vector3 pos = transform.position + Vector3.up * ((standingHeight / 2) - charController.radius);
 
-        return !Physics.CheckCapsule(transform.position, end, radius, standUpCollisionMask);
+        return !Physics.CheckSphere(pos, radius, standUpCollisionMask);
     }
 
 
@@ -244,7 +245,9 @@ public class PlayerController : MonoBehaviour {
 
 
     private void OnDrawGizmosSelected() {
-        if (isCrouching)
-            Gizmos.DrawWireSphere(transform.position + Vector3.up * (standingHeight - crouchHeight), charController.radius);
+        if (isCrouching) {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(transform.position + Vector3.up * ((standingHeight / 2) - charController.radius), charController.radius);
+        }
     }
 }
