@@ -5,7 +5,7 @@ public class Inventory : MonoBehaviour {
     public Key CurrentKey { get; private set; }
 
     public Transform keySocket;
-    [SerializeField] private float dropOffset = 1.5f;
+    public Transform itemDropPos;
 
 
     private void OnEnable() {
@@ -64,7 +64,7 @@ public class Inventory : MonoBehaviour {
             keyComp.EnablePhysics();
 
         key.transform.parent = null;
-        key.transform.position = transform.position + transform.forward * dropOffset;
+        key.transform.position = itemDropPos.position;
     }
 
 
@@ -76,8 +76,9 @@ public class Inventory : MonoBehaviour {
 
 
     private void OnDrawGizmosSelected() {
-        Gizmos.color = Color.yellow;
-        Vector3 center = transform.position + transform.forward * dropOffset;
-        Gizmos.DrawWireSphere(center, 0.2f);
+        if (itemDropPos != null) {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(itemDropPos.position, 0.2f);
+        }
     }
 }
