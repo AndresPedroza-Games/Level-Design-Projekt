@@ -4,16 +4,13 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour {
+
     private CharacterController cController;
+    private Animator animator;
 
     [Header("---Cinemachine---")]
     [SerializeField] private Transform cameraTransform;
 
-
-    private Vector2 moveInput;
-    private Vector3 FaceDirection;
-    private float yVelocity;
-    private const float gravity = -9.8f;
 
     [Header("---Movement---")]
     [SerializeField] private float walkingSpeed = 4f;
@@ -21,9 +18,16 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float runSpeed = 6f;
     [SerializeField] private float runTransitionSpeed = 0.3f;
     [SerializeField] private float turnSpeed = 10f;
+
+    private Vector2 moveInput;
+    private bool isWalking;
+    private Vector3 FaceDirection;
+    private float yVelocity;
+    private const float gravity = -9.8f;
     private bool isRunning = false;
     private float movementSpeed;
     private Coroutine runRoutine = null;
+
 
     [Header("---Crouching---")]
     [SerializeField] private float crouchHeight = 1.5f;
@@ -42,6 +46,7 @@ public class PlayerController : MonoBehaviour {
 
     private void Awake() {
         cController = GetComponent<CharacterController>();
+        animator = GetComponentInChildren<Animator>();
 
         standUpCollisionMask = ~LayerMask.GetMask("Player");
 
@@ -54,10 +59,11 @@ public class PlayerController : MonoBehaviour {
 
 
     private void OnEnable() {
-        InputManager.Instance.Controls.Movement.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
-        InputManager.Instance.Controls.Movement.Move.canceled += ctx => moveInput = Vector2.zero;
+        InputManager.Instance.Controls.Movement.Move.performed += OnMoveInputPerformed;
+        InputManager.Instance.Controls.Movement.Move.canceled += OnMoveInputCanceled;
 
         InputManager.Instance.Controls.Movement.Crouch.performed += Crouch;
+
         InputManager.Instance.Controls.Movement.Run.performed += Run;
     }
 
@@ -65,12 +71,27 @@ public class PlayerController : MonoBehaviour {
     private void OnDisable() {
         InputManager.Instance.Controls.Disable();
 
-        InputManager.Instance.Controls.Movement.Move.performed -= ctx => moveInput = ctx.ReadValue<Vector2>();
-        InputManager.Instance.Controls.Movement.Move.canceled -= ctx => moveInput = Vector2.zero;
+        InputManager.Instance.Controls.Movement.Move.performed -= OnMoveInputPerformed;
+        InputManager.Instance.Controls.Movement.Move.canceled -= OnMoveInputCanceled;
 
         InputManager.Instance.Controls.Movement.Crouch.performed -= Crouch;
+
         InputManager.Instance.Controls.Movement.Run.performed -= Run;
     }
+
+
+    private void OnMoveInputPerformed(InputAction.CallbackContext ctx) {
+        moveInput = ctx.ReadValue<Vector2>(); 
+        isWalking = true; 
+        animator.SetBool("isWalking", isWalking);
+    }
+
+    private void OnMoveInputCanceled(InputAction.CallbackContext ctx) {
+        moveInput = Vector2.zero; 
+        isWalking = false; 
+        animator.SetBool("isWalking", isWalking);
+    }
+
 
 
     private void Update() {
@@ -124,6 +145,7 @@ public class PlayerController : MonoBehaviour {
 
     private void Crouch(InputAction.CallbackContext ctx) {
         crouchRoutine ??= StartCoroutine(CrouchCoroutine(crouchTransitionSpeed));
+        animator.SetBool("isCrouching", isCrouching);
         isRunning = false;
     }
 
