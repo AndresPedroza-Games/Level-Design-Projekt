@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-guid: 81bb9eea30387e442899949a80011e55
-AssetOrigin:
-  serializedVersion: 1
-  productId: 196830
-  packageName: Banana Man
-  packageVersion: 1.1.2
-  assetPath: Assets/Plugins/Banana Yellow Games/Characters/Banana Man/Banana Man.fbx
-  uploadId: 544823
+guid: 516c980ef28a88e4ca56d9c89f9cc698
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -50,7 +43,7 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
-    nodeNameCollisionStrategy: 0
+    nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -109,8 +102,8 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
-  importBlendShapeDeformPercent: 0
-  remapMaterialsIfMaterialImportModeIsNone: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
