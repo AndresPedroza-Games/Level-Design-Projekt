@@ -14,6 +14,8 @@ public class InputManager : MonoBehaviour
 
 
     public InputAction Emote1 => Controls.Emotes.Emote1;
+    public InputAction Emote2 => Controls.Emotes.Emote2;
+    public InputAction Emote3 => Controls.Emotes.Emote3;
 
 
     private void Awake() {

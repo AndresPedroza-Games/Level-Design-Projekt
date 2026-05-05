@@ -10,7 +10,7 @@ public class Interactor : MonoBehaviour {
 
 
     private void OnEnable() {
-        InputManager.Instance.Controls.Interaction.Interact.performed += Interaction;
+        InputManager.Instance.Interact.performed += Interaction;
     }
 
 
@@ -19,7 +19,7 @@ public class Interactor : MonoBehaviour {
     }
 
     private void OnDisable() {
-        InputManager.Instance.Controls.Interaction.Interact.performed -= Interaction;
+        InputManager.Instance.Interact.performed -= Interaction;
     }
 
 

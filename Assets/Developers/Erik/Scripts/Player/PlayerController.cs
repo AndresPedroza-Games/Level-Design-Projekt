@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float runTransitionSpeed = 0.3f;
     [SerializeField] private float turnSpeed = 10f;
 
+    [Header("--Animation---")]
     [SerializeField] private float animationDampTime = 0.1f;
 
     private Vector2 moveInput;
