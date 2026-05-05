@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour {
@@ -8,24 +10,28 @@ public class PlayerController : MonoBehaviour {
     private CharacterController cController;
     private Animator animator;
 
+    public event Action<bool> OnCrouchChanged;
+
     [Header("---Cinemachine---")]
     [SerializeField] private Transform cameraTransform;
 
 
     [Header("---Movement---")]
-    [SerializeField] private float walkingSpeed = 4f;
-    [SerializeField] private float crouchSpeed = 2f;
-    [SerializeField] private float runSpeed = 6f;
+    [SerializeField] private float walkingSpeed = 2.5f;
+    [SerializeField] private float crouchSpeed = 1.5f;
+    [SerializeField] private float runSpeed = 4f;
     [SerializeField] private float runTransitionSpeed = 0.3f;
     [SerializeField] private float turnSpeed = 10f;
 
+    [SerializeField] private float animationDampTime = 0.1f;
+
     private Vector2 moveInput;
-    private bool isWalking;
     private Vector3 FaceDirection;
     private float yVelocity;
     private const float gravity = -9.8f;
     private bool isRunning = false;
     private float movementSpeed;
+
     private Coroutine runRoutine = null;
 
 
@@ -35,9 +41,9 @@ public class PlayerController : MonoBehaviour {
 
     private int standUpCollisionMask;
     private float standingHeight;
-    private bool isCrouching = false;
+    public bool IsCrouching { get; private set; } = false;
     private Coroutine crouchRoutine = null;
-
+    
 
     [Header("---Gravity---")]
     [SerializeField] private float gravityMultiplier = 1f;
@@ -59,37 +65,33 @@ public class PlayerController : MonoBehaviour {
 
 
     private void OnEnable() {
-        InputManager.Instance.Controls.Movement.Move.performed += OnMoveInputPerformed;
-        InputManager.Instance.Controls.Movement.Move.canceled += OnMoveInputCanceled;
+        InputManager.Instance.Move.performed += OnMoveInputPerformed;
+        InputManager.Instance.Move.canceled += OnMoveInputCanceled;
 
-        InputManager.Instance.Controls.Movement.Crouch.performed += Crouch;
+        InputManager.Instance.Crouch.performed += Crouch;
 
-        InputManager.Instance.Controls.Movement.Run.performed += Run;
+        InputManager.Instance.Run.performed += Run;
     }
 
 
     private void OnDisable() {
         InputManager.Instance.Controls.Disable();
 
-        InputManager.Instance.Controls.Movement.Move.performed -= OnMoveInputPerformed;
-        InputManager.Instance.Controls.Movement.Move.canceled -= OnMoveInputCanceled;
+        InputManager.Instance.Move.performed -= OnMoveInputPerformed;
+        InputManager.Instance.Move.canceled -= OnMoveInputCanceled;
 
-        InputManager.Instance.Controls.Movement.Crouch.performed -= Crouch;
+        InputManager.Instance.Crouch.performed -= Crouch;
 
-        InputManager.Instance.Controls.Movement.Run.performed -= Run;
+        InputManager.Instance.Run.performed -= Run;
     }
 
 
     private void OnMoveInputPerformed(InputAction.CallbackContext ctx) {
-        moveInput = ctx.ReadValue<Vector2>(); 
-        isWalking = true; 
-        animator.SetBool("isWalking", isWalking);
+        moveInput = ctx.ReadValue<Vector2>();
     }
 
     private void OnMoveInputCanceled(InputAction.CallbackContext ctx) {
-        moveInput = Vector2.zero; 
-        isWalking = false; 
-        animator.SetBool("isWalking", isWalking);
+        moveInput = Vector2.zero;
     }
 
 
@@ -99,8 +101,15 @@ public class PlayerController : MonoBehaviour {
         HandleGravity();
         HandleMovement();
         HandleRotation();
+
+        HandleMovementAnimation();
     }
 
+
+    private void HandleMovementAnimation() {
+        float speed = isRunning ? 1f : 0.5f;
+        animator.SetFloat("Speed", speed * moveInput.magnitude, animationDampTime, Time.deltaTime);
+    }
 
     private void HandleMovement() {
         Vector3 forward = cameraTransform.forward;
@@ -112,7 +121,7 @@ public class PlayerController : MonoBehaviour {
         forward.Normalize();
         right.Normalize();
 
-        FaceDirection = (forward * moveInput.y + right * moveInput.x);
+        FaceDirection = (forward * moveInput.y + right * moveInput.x).normalized;
 
         Vector3 horizontal = FaceDirection * movementSpeed;
         Vector3 vertical = Vector3.up * yVelocity;
@@ -145,7 +154,6 @@ public class PlayerController : MonoBehaviour {
 
     private void Crouch(InputAction.CallbackContext ctx) {
         crouchRoutine ??= StartCoroutine(CrouchCoroutine(crouchTransitionSpeed));
-        animator.SetBool("isCrouching", isCrouching);
         isRunning = false;
     }
 
@@ -156,16 +164,17 @@ public class PlayerController : MonoBehaviour {
             yield break;
         }
 
-        isCrouching = !isCrouching;
+        IsCrouching = !IsCrouching;
+        OnCrouchChanged?.Invoke(IsCrouching);
 
         float timer = 0f;
         float startHeight = cController.height;
         float startCenterY = cController.center.y;
         float startSpeed = movementSpeed;
 
-        float targetHeight = isCrouching ? crouchHeight : standingHeight;
-        Vector3 targetCenterY = isCrouching ? new(0f, crouchHeight / 2, 0f) : new(0f, standingHeight / 2, 0f);
-        float targetSpeed = isCrouching ? crouchSpeed : walkingSpeed;
+        float targetHeight = IsCrouching ? crouchHeight : standingHeight;
+        Vector3 targetCenterY = IsCrouching ? new(0f, crouchHeight / 2, 0f) : new(0f, standingHeight / 2, 0f);
+        float targetSpeed = IsCrouching ? crouchSpeed : walkingSpeed;
 
         while (timer < transitionSpeed) {
             timer += Time.deltaTime;
@@ -179,7 +188,7 @@ public class PlayerController : MonoBehaviour {
 
         cController.height = targetHeight;
         cController.center = targetCenterY;
-        movementSpeed = isCrouching ? crouchSpeed : walkingSpeed;
+        movementSpeed = IsCrouching ? crouchSpeed : walkingSpeed;
         crouchRoutine = null;
     }
 
@@ -195,7 +204,7 @@ public class PlayerController : MonoBehaviour {
 
 
     private void Run(InputAction.CallbackContext ctx) {
-        if (isCrouching) {
+        if (IsCrouching) {
             if (!CanStandUp())
                 return;
 
@@ -227,7 +236,7 @@ public class PlayerController : MonoBehaviour {
 
 
     private void OnDrawGizmosSelected() {
-        if (isCrouching) {
+        if (IsCrouching) {
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(transform.position + Vector3.up * (standingHeight - cController.radius), cController.radius);
         }
