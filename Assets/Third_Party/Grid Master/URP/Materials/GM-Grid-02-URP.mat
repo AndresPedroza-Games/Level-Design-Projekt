@@ -8,66 +8,37 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: GM-Grid-02-URP
-  m_Shader: {fileID: -6465566751694194690, guid: 44f8dfd6d74d14469bb0ef07b544f59e, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Parent: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_ModifiedSerializedProperties: 18
+  m_ValidKeywords:
+  - _EMISSION
   m_InvalidKeywords:
   - _BLEND_MODE_ADD
-  - _EMISSION
-  m_LightmapFlags: 2
+  m_LightmapFlags: 6
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses:
   - MOTIONVECTORS
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs:
-    - _Base_Texture:
-        m_Texture: {fileID: 2800000, guid: 5a64d6e2a2f3e47b5bd7fefb70dfad1d, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Emission_Texture:
-        m_Texture: {fileID: 2800000, guid: aa84ae26e60524c918bc2d71ae98862b, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 5a64d6e2a2f3e47b5bd7fefb70dfad1d, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Metallic_Texture:
-        m_Texture: {fileID: 2800000, guid: 4370a808eff4549229eed13aafc646db, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_Lightmaps:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_LightmapsInd:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_ShadowMasks:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+    m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _BLEND_MODE: 0
-    - _BUILTIN_QueueControl: -1
-    - _BUILTIN_QueueOffset: 0
-    - _Emission: 1
+    - _GlossMapScale: 0
+    - _Glossiness: 0
+    - _GlossyReflections: 0
     - _Metallic: 0.705
-    - _QueueControl: 0
-    - _QueueOffset: 0
+    - _Parallax: 0.005
     - _Smoothness: 0
-    - _Tiling: 2
     m_Colors:
-    - _Base_Color: {r: 0, g: 0, b: 0, a: 0}
-    - _Emission_Color: {r: 0.0754717, g: 0.0754717, b: 0.0754717, a: 0}
+    - _BaseColor: {r: 0.47450984, g: 0.4784314, b: 0.4784314, a: 1}
+    - _Color: {r: 0.47450978, g: 0.47843134, b: 0.47843134, a: 1}
+    - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &3729133454598192734
