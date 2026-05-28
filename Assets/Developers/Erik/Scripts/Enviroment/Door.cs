@@ -18,5 +18,6 @@ public class Door : MonoBehaviour, IInteractable {
 
     private void OpenDoor() {
         gameObject.SetActive(false);
+        EventSystemController.eventSystemController.OpenDoor(this);
     }
 }

@@ -30,6 +30,8 @@ public class Interactor : MonoBehaviour {
         foreach (Collider col in hits) {
             if (col.gameObject.TryGetComponent(out IInteractable interactable)) {
                 interactable.Interact(player);
+                if(col.TryGetComponent(out Key key))
+                    DataManager.dataManager.SaveData<Key>(DataManager.dataManager.dataContainer.keyData, key);
             }
         }
     }
