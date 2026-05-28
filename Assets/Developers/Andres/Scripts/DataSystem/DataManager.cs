@@ -21,7 +21,7 @@ public class DataManager : MonoBehaviour
         _EventSystemController.onRestart += RestartDoor;
     }
 
-    private void SaveData<t>(List<t> dataList, t data)
+    public void SaveData<t>(List<t> dataList, t data)
     {
         if (dataList.Contains(data))
             return;
