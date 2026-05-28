@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class DataManager : MonoBehaviour
 {
     public static DataManager dataManager;
+    private EventSystemController _EventSystemController;
 
     public DataContainer dataContainer;
 
@@ -13,7 +14,14 @@ public class DataManager : MonoBehaviour
             dataManager = this;
     }
 
-    public void SaveData<t>(List<t> dataList, t data)
+    private void Start()
+    {
+        _EventSystemController = EventSystemController.eventSystemController;
+        _EventSystemController.onOpenDoor += (door) => SaveData<Door>(dataContainer.doorData, door);
+        _EventSystemController.onRestart += RestartDoor;
+    }
+
+    private void SaveData<t>(List<t> dataList, t data)
     {
         if (dataList.Contains(data))
             return;
@@ -22,7 +30,7 @@ public class DataManager : MonoBehaviour
         Debug.Log($"Data has been saved: {data.GetType()}");
     }
 
-    public List<t> GetData<t>(List<t> dataList, bool criteria)
+    private List<t> GetData<t>(List<t> dataList, bool criteria)
     {
         List<t> resultData = new List<t>();
 
@@ -42,5 +50,13 @@ public class DataManager : MonoBehaviour
 
         dataList.Remove(data);
         Debug.Log($"Data has been removed: {data.GetType()}");
+    }
+
+    private void RestartDoor()
+    {
+        foreach (Door door in dataContainer.doorData)
+        {
+            door.gameObject.SetActive(false);
+        }
     }
 }
