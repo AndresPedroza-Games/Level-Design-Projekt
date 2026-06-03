@@ -50,6 +50,7 @@ public class Inventory : MonoBehaviour {
     private void PickUpKey(GameObject key) {
         key.transform.SetParent(keySocket);
         key.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+        key.GetComponent<Key>().isGrabbed = true;
     }
 
 
@@ -65,6 +66,7 @@ public class Inventory : MonoBehaviour {
 
         key.transform.parent = null;
         key.transform.position = itemDropPos.position;
+        key.GetComponent<Key>().isGrabbed = false;
     }
 
 
