@@ -7,6 +7,8 @@ public class Key : MonoBehaviour, IInteractable {
     private Rigidbody rb;
     private Collider col;
 
+    public bool isGrabbed;
+
     public bool CanPickUp { get; private set; }
 
     private void Awake() {

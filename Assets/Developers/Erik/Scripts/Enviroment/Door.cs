@@ -6,8 +6,10 @@ public class Door : MonoBehaviour, IInteractable {
 
     public void Interact(Player player) {
         if (player.Inventory.CurrentKey == null)
+        {
+            UIController.uiController.ChangeTextBox("Closed Door");
             return;
-
+        }
 
         if (player.Inventory.CurrentKey.gameObject == requiredKey) {
             OpenDoor();
