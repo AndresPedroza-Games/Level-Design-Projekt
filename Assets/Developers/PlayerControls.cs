@@ -241,6 +241,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pull"",
+                    ""type"": ""Button"",
+                    ""id"": ""c3c4b9bc-b536-44cf-a256-0d1b59f09f9c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -263,6 +272,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Drop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c8aa6363-a509-4874-a947-f54fee68df7a"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pull"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -349,6 +369,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Interaction = asset.FindActionMap("Interaction", throwIfNotFound: true);
         m_Interaction_Interact = m_Interaction.FindAction("Interact", throwIfNotFound: true);
         m_Interaction_Drop = m_Interaction.FindAction("Drop", throwIfNotFound: true);
+        m_Interaction_Pull = m_Interaction.FindAction("Pull", throwIfNotFound: true);
         // Emotes
         m_Emotes = asset.FindActionMap("Emotes", throwIfNotFound: true);
         m_Emotes_Emote1 = m_Emotes.FindAction("Emote1", throwIfNotFound: true);
@@ -567,6 +588,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IInteractionActions> m_InteractionActionsCallbackInterfaces = new List<IInteractionActions>();
     private readonly InputAction m_Interaction_Interact;
     private readonly InputAction m_Interaction_Drop;
+    private readonly InputAction m_Interaction_Pull;
     /// <summary>
     /// Provides access to input actions defined in input action map "Interaction".
     /// </summary>
@@ -586,6 +608,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Interaction/Drop".
         /// </summary>
         public InputAction @Drop => m_Wrapper.m_Interaction_Drop;
+        /// <summary>
+        /// Provides access to the underlying input action "Interaction/Pull".
+        /// </summary>
+        public InputAction @Pull => m_Wrapper.m_Interaction_Pull;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -618,6 +644,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Drop.started += instance.OnDrop;
             @Drop.performed += instance.OnDrop;
             @Drop.canceled += instance.OnDrop;
+            @Pull.started += instance.OnPull;
+            @Pull.performed += instance.OnPull;
+            @Pull.canceled += instance.OnPull;
         }
 
         /// <summary>
@@ -635,6 +664,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Drop.started -= instance.OnDrop;
             @Drop.performed -= instance.OnDrop;
             @Drop.canceled -= instance.OnDrop;
+            @Pull.started -= instance.OnPull;
+            @Pull.performed -= instance.OnPull;
+            @Pull.canceled -= instance.OnPull;
         }
 
         /// <summary>
@@ -843,6 +875,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnDrop(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Pull" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPull(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Emotes" which allows adding and removing callbacks.
