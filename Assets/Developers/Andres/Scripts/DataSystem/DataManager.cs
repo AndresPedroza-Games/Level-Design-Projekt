@@ -18,7 +18,7 @@ public class DataManager : MonoBehaviour
     {
         _EventSystemController = EventSystemController.eventSystemController;
         _EventSystemController.onOpenDoor += (door) => SaveData<Door>(dataContainer.doorData, door);
-        _EventSystemController.onRestart += RestartDoor;
+        //_EventSystemController.onRestart += RestartDoor;
     }
 
     public void SaveData<t>(List<t> dataList, t data)
@@ -54,6 +54,9 @@ public class DataManager : MonoBehaviour
 
     private void RestartDoor()
     {
+        if (dataContainer.doorData.Count <= 0)
+            return;
+
         foreach (Door door in dataContainer.doorData)
         {
             door.gameObject.SetActive(false);

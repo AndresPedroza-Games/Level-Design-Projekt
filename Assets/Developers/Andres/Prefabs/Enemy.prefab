@@ -429,8 +429,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _ChasingSpeed: 2
-  _MinDistancePlayer: 1
-  _Radius: 5
+  _MinDistancePlayer: 1.5
+  _Radius: 7
   _Detectable:
     serializedVersion: 2
     m_Bits: 8

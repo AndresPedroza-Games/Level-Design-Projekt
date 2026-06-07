@@ -43,25 +43,29 @@ public class Enemy : MonoBehaviour
         };
 
         _Agent = GetComponent<NavMeshAgent>();
+        _Player = FindFirstObjectByType<PlayerController>().gameObject;
     }
 
     private void Start()
     {
         int randomPoint = Random.Range(0, _PatrolPoints.Count);
         _CurrentPoint = randomPoint;
+
+        EventSystemController.eventSystemController.onEndGame += () => FreezEnemy(true);
+        EventSystemController.eventSystemController.onRestart += () => FreezEnemy(false);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
+        if (CheckDistanceWithPlayer())
+            EventSystemController.eventSystemController.EndGame();
+
         if (CheckIfPlayerInsideRange())
             _CurrentState = States.chasing;
         else
             _CurrentState = States.patrol;
 
         _StateMachine[_CurrentState].Invoke();
-
-        if (CheckDistanceWithPlayer())
-            EventSystemController.eventSystemController.EndGame();
 
         Debug.Log($"Enemy current state: {_CurrentState}");
     }
@@ -138,7 +142,6 @@ public class Enemy : MonoBehaviour
         {
             if (collision.GetComponent<PlayerController>() != null)
             {
-                _Player = collision.gameObject;
                 return true;
             }
         }
@@ -157,6 +160,15 @@ public class Enemy : MonoBehaviour
             return true;
 
         return false;
+    }
+
+    private void FreezEnemy(bool status)
+    {
+        if(status)
+            StopAllCoroutines();
+
+        this.enabled = !status;
+        _Agent.isStopped = !status;
     }
 
     private void OnDrawGizmos()

@@ -1,24 +1,35 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private GameObject _EndGameHUD;
-
     public Inventory Inventory { get; private set; }
 
-    private EventSystemController _EventSystemController;
+    private GameObject _Camera;
 
     void Start()
     {
         Inventory = GetComponent<Inventory>();
-        _EventSystemController = EventSystemController.eventSystemController;
-        _EventSystemController.onEndGame += EndGame;
+
+        EventSystemController.eventSystemController.onEndGame += () => FreezCharacter(true);
+        EventSystemController.eventSystemController.onRestart += () => FreezCharacter(false);
+
+        _Camera = FindFirstObjectByType<CinemachineCamera>().gameObject;
     }
 
-    private void EndGame()
+    private void FreezCharacter(bool status)
     {
-        _EndGameHUD.SetActive(true);
-        Time.timeScale = 0f;
-        Debug.Log("End Game");
+        if (status)
+        {
+            InputManager.Instance.Controls.Movement.Disable();
+            InputManager.Instance.Controls.Interaction.Disable();
+        }
+        else
+        {
+            InputManager.Instance.Controls.Movement.Enable();
+            InputManager.Instance.Controls.Interaction.Enable();
+        }
+
+        _Camera.SetActive(!status);
     }
 }
