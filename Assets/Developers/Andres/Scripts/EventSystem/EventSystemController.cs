@@ -8,6 +8,8 @@ public class EventSystemController : MonoBehaviour
     public Action<Door> onOpenDoor;
     public Action onRestart;
 
+    public Action onEndGame;
+
     private void Awake()
     {
         if (eventSystemController == null)
@@ -24,5 +26,10 @@ public class EventSystemController : MonoBehaviour
     {
         if (onRestart != null)
             onRestart.Invoke();
+    }
+
+    public void EndGame()
+    {
+        onEndGame?.Invoke();
     }
 }
