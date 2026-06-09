@@ -335,6 +335,94 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Lock"",
+            ""id"": ""b91db05a-4fb2-4bd5-b6ae-6bbb9b071831"",
+            ""actions"": [
+                {
+                    ""name"": ""Exit"",
+                    ""type"": ""Button"",
+                    ""id"": ""6e5d4251-99a4-4c58-badd-55fe93539a69"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RotatePiece"",
+                    ""type"": ""Value"",
+                    ""id"": ""28df28da-ca87-4411-8a17-af808bda7f0b"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ReleasePiece"",
+                    ""type"": ""Button"",
+                    ""id"": ""b0c8a45e-0b3d-4ba8-92dc-95d208dd55b4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectPiece"",
+                    ""type"": ""Button"",
+                    ""id"": ""a44772d4-8988-4821-a62e-c5517df358d4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""e6bbc36c-71bd-4e43-a92f-41a900993314"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8971f4d2-1556-44dc-a5d6-a176a0bd85c0"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotatePiece"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""64ffbe42-9d15-4bd7-956c-68ba7d2f0650"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReleasePiece"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aaf17fe6-3c31-4eb0-8422-a29448ac032a"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectPiece"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -354,6 +442,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Emotes_Emote1 = m_Emotes.FindAction("Emote1", throwIfNotFound: true);
         m_Emotes_Emote2 = m_Emotes.FindAction("Emote2", throwIfNotFound: true);
         m_Emotes_Emote3 = m_Emotes.FindAction("Emote3", throwIfNotFound: true);
+        // Lock
+        m_Lock = asset.FindActionMap("Lock", throwIfNotFound: true);
+        m_Lock_Exit = m_Lock.FindAction("Exit", throwIfNotFound: true);
+        m_Lock_RotatePiece = m_Lock.FindAction("RotatePiece", throwIfNotFound: true);
+        m_Lock_ReleasePiece = m_Lock.FindAction("ReleasePiece", throwIfNotFound: true);
+        m_Lock_SelectPiece = m_Lock.FindAction("SelectPiece", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -361,6 +455,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_Movement.enabled, "This will cause a leak and performance issues, PlayerControls.Movement.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Interaction.enabled, "This will cause a leak and performance issues, PlayerControls.Interaction.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Emotes.enabled, "This will cause a leak and performance issues, PlayerControls.Emotes.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Lock.enabled, "This will cause a leak and performance issues, PlayerControls.Lock.Disable() has not been called.");
     }
 
     /// <summary>
@@ -786,6 +881,135 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="EmotesActions" /> instance referencing this action map.
     /// </summary>
     public EmotesActions @Emotes => new EmotesActions(this);
+
+    // Lock
+    private readonly InputActionMap m_Lock;
+    private List<ILockActions> m_LockActionsCallbackInterfaces = new List<ILockActions>();
+    private readonly InputAction m_Lock_Exit;
+    private readonly InputAction m_Lock_RotatePiece;
+    private readonly InputAction m_Lock_ReleasePiece;
+    private readonly InputAction m_Lock_SelectPiece;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Lock".
+    /// </summary>
+    public struct LockActions
+    {
+        private @PlayerControls m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public LockActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Lock/Exit".
+        /// </summary>
+        public InputAction @Exit => m_Wrapper.m_Lock_Exit;
+        /// <summary>
+        /// Provides access to the underlying input action "Lock/RotatePiece".
+        /// </summary>
+        public InputAction @RotatePiece => m_Wrapper.m_Lock_RotatePiece;
+        /// <summary>
+        /// Provides access to the underlying input action "Lock/ReleasePiece".
+        /// </summary>
+        public InputAction @ReleasePiece => m_Wrapper.m_Lock_ReleasePiece;
+        /// <summary>
+        /// Provides access to the underlying input action "Lock/SelectPiece".
+        /// </summary>
+        public InputAction @SelectPiece => m_Wrapper.m_Lock_SelectPiece;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Lock; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="LockActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(LockActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="LockActions" />
+        public void AddCallbacks(ILockActions instance)
+        {
+            if (instance == null || m_Wrapper.m_LockActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_LockActionsCallbackInterfaces.Add(instance);
+            @Exit.started += instance.OnExit;
+            @Exit.performed += instance.OnExit;
+            @Exit.canceled += instance.OnExit;
+            @RotatePiece.started += instance.OnRotatePiece;
+            @RotatePiece.performed += instance.OnRotatePiece;
+            @RotatePiece.canceled += instance.OnRotatePiece;
+            @ReleasePiece.started += instance.OnReleasePiece;
+            @ReleasePiece.performed += instance.OnReleasePiece;
+            @ReleasePiece.canceled += instance.OnReleasePiece;
+            @SelectPiece.started += instance.OnSelectPiece;
+            @SelectPiece.performed += instance.OnSelectPiece;
+            @SelectPiece.canceled += instance.OnSelectPiece;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="LockActions" />
+        private void UnregisterCallbacks(ILockActions instance)
+        {
+            @Exit.started -= instance.OnExit;
+            @Exit.performed -= instance.OnExit;
+            @Exit.canceled -= instance.OnExit;
+            @RotatePiece.started -= instance.OnRotatePiece;
+            @RotatePiece.performed -= instance.OnRotatePiece;
+            @RotatePiece.canceled -= instance.OnRotatePiece;
+            @ReleasePiece.started -= instance.OnReleasePiece;
+            @ReleasePiece.performed -= instance.OnReleasePiece;
+            @ReleasePiece.canceled -= instance.OnReleasePiece;
+            @SelectPiece.started -= instance.OnSelectPiece;
+            @SelectPiece.performed -= instance.OnSelectPiece;
+            @SelectPiece.canceled -= instance.OnSelectPiece;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="LockActions.UnregisterCallbacks(ILockActions)" />.
+        /// </summary>
+        /// <seealso cref="LockActions.UnregisterCallbacks(ILockActions)" />
+        public void RemoveCallbacks(ILockActions instance)
+        {
+            if (m_Wrapper.m_LockActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="LockActions.AddCallbacks(ILockActions)" />
+        /// <seealso cref="LockActions.RemoveCallbacks(ILockActions)" />
+        /// <seealso cref="LockActions.UnregisterCallbacks(ILockActions)" />
+        public void SetCallbacks(ILockActions instance)
+        {
+            foreach (var item in m_Wrapper.m_LockActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_LockActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="LockActions" /> instance referencing this action map.
+    /// </summary>
+    public LockActions @Lock => new LockActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Movement" which allows adding and removing callbacks.
     /// </summary>
@@ -872,5 +1096,41 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnEmote3(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Lock" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="LockActions.AddCallbacks(ILockActions)" />
+    /// <seealso cref="LockActions.RemoveCallbacks(ILockActions)" />
+    public interface ILockActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Exit" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnExit(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "RotatePiece" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRotatePiece(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ReleasePiece" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnReleasePiece(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SelectPiece" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSelectPiece(InputAction.CallbackContext context);
     }
 }

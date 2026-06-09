@@ -3,9 +3,17 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player Instance;
+
     public Inventory Inventory { get; private set; }
 
-    private GameObject _Camera;
+    public GameObject _Camera;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+    }
 
     void Start()
     {
@@ -17,7 +25,7 @@ public class Player : MonoBehaviour
         _Camera = FindFirstObjectByType<CinemachineCamera>().gameObject;
     }
 
-    private void FreezCharacter(bool status)
+    public void FreezCharacter(bool status)
     {
         if (status)
         {
