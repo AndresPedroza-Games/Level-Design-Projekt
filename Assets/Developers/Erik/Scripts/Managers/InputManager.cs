@@ -12,6 +12,9 @@ public class InputManager : MonoBehaviour
     public InputAction Crouch => Controls.Movement.Crouch;
     public InputAction Interact => Controls.Interaction.Interact;
 
+    public InputAction Zoom => Controls.Interaction.Zoom;
+    public InputAction Throw => Controls.Interaction.Throw;
+
 
     public InputAction Emote1 => Controls.Emotes.Emote1;
     public InputAction Emote2 => Controls.Emotes.Emote2;

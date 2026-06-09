@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 
@@ -8,16 +7,13 @@ public class Door : MonoBehaviour, IInteractable {
 
 
 	public void Interact(Player player) {
-		if (player.Inventory.CurrentKey != null) {
-			if (player.Inventory.CurrentKey.gameObject == requiredKey) {
-				OpenDoor();
-				player.Inventory.UseKey();
-				return;
-			}
+		if (!player.Inventory.CurrentHoldItem || player.Inventory.CurrentHoldItem != requiredKey) {
+			OnLockedDoor();
+			return;
 		}
 
-		OnLockedDoor();
-
+		OpenDoor();
+		player.Inventory.UseItem();
 	}
 
 
