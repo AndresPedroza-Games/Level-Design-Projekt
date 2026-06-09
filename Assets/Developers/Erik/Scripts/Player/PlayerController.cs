@@ -7,15 +7,12 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour {
 
-
 	private CharacterController cController;
-	private Animator animator;
-	private readonly int speed = Animator.StringToHash("Speed");
-
 	public event Action<bool> OnCrouchChanged;
 
 	[Header("---CineMachine---")]
 	[SerializeField] private Transform cameraTransform;
+	[SerializeField] private Transform cameraTarget;
 
 
 	[Header("---Movement---")]
@@ -28,14 +25,11 @@ public class PlayerController : MonoBehaviour {
 	[Header("---Push Object---")]
 	[SerializeField] private float force = 1f;
 
-	[Header("--Animation---")]
-	[SerializeField] private float animationDampTime = 0.1f;
-
-	private Vector2 moveInput;
+	public Vector2 MoveInput { get; private set; }
 	private Vector3 faceDirection;
 	private float yVelocity;
 	private const float Gravity = -9.8f;
-	private bool isRunning;
+	public bool IsRunning { get; private set; }
 	private float movementSpeed;
 
 	private Coroutine runRoutine;
@@ -44,6 +38,9 @@ public class PlayerController : MonoBehaviour {
 	[Header("---Crouching---")]
 	[SerializeField] private float crouchHeight = 1.5f;
 	[SerializeField] private float crouchTransitionSpeed = 0.3f;
+	[SerializeField] private float crouchCameraTargetHeight = 1f;
+
+	private float originalCameraTargetHeight;
 
 	private int standUpCollisionMask;
 	private float standingHeight;
@@ -58,12 +55,13 @@ public class PlayerController : MonoBehaviour {
 
 	private void Awake() {
 		cController = GetComponent<CharacterController>();
-		animator = GetComponentInChildren<Animator>();
 
 		standUpCollisionMask = ~LayerMask.GetMask("Player");
 
 		standingHeight = cController.height;
 		movementSpeed = walkingSpeed;
+
+		originalCameraTargetHeight = cameraTarget.localPosition.y;
 
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
@@ -93,28 +91,19 @@ public class PlayerController : MonoBehaviour {
 
 
 	private void OnMoveInputPerformed(InputAction.CallbackContext ctx) {
-		moveInput = ctx.ReadValue<Vector2>();
+		MoveInput = ctx.ReadValue<Vector2>();
 	}
 
 
 	private void OnMoveInputCanceled(InputAction.CallbackContext ctx) {
-		moveInput = Vector2.zero;
+		MoveInput = Vector2.zero;
 	}
 
 
 	private void Update() {
-
 		HandleGravity();
 		HandleMovement();
 		HandleRotation();
-
-		HandleMovementAnimation();
-	}
-
-
-	private void HandleMovementAnimation() {
-		float moveSpeed = isRunning ? 1f : 0.5f;
-		animator.SetFloat(speed, moveSpeed * moveInput.magnitude, animationDampTime, Time.deltaTime);
 	}
 
 
@@ -128,7 +117,7 @@ public class PlayerController : MonoBehaviour {
 		forward.Normalize();
 		right.Normalize();
 
-		faceDirection = (forward * moveInput.y + right * moveInput.x).normalized;
+		faceDirection = (forward * MoveInput.y + right * MoveInput.x).normalized;
 
 		Vector3 horizontal = faceDirection * movementSpeed;
 		Vector3 vertical = Vector3.up * yVelocity;
@@ -138,10 +127,10 @@ public class PlayerController : MonoBehaviour {
 
 
 	private void HandleRotation() {
-		if (faceDirection.sqrMagnitude >= 0.001f) {
-			Quaternion targetRotation = Quaternion.LookRotation(faceDirection);
-			transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
-		}
+		Vector3 dir = cameraTransform.forward;
+		dir.y = 0f;
+		Quaternion targetRotation = Quaternion.LookRotation(dir);
+		transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
 	}
 
 
@@ -158,7 +147,7 @@ public class PlayerController : MonoBehaviour {
 
 	private void Crouch(InputAction.CallbackContext ctx) {
 		crouchRoutine ??= StartCoroutine(CrouchCoroutine(crouchTransitionSpeed));
-		isRunning = false;
+		IsRunning = false;
 	}
 
 
@@ -173,8 +162,12 @@ public class PlayerController : MonoBehaviour {
 
 		float timer = 0f;
 		float startHeight = cController.height;
-		float startCenterY = cController.center.y;
+		Vector3 startCenterY = cController.center;
 		float startSpeed = movementSpeed;
+
+		Vector3 startCamPos = cameraTarget.localPosition;
+		Vector3 targetCamPos = startCamPos;
+		targetCamPos.y = isCrouching ? crouchCameraTargetHeight : originalCameraTargetHeight;
 
 		float targetHeight = isCrouching ? crouchHeight : standingHeight;
 		Vector3 targetCenterY = isCrouching ? new(0f, crouchHeight / 2, 0f) : new(0f, standingHeight / 2, 0f);
@@ -185,17 +178,20 @@ public class PlayerController : MonoBehaviour {
 			float t = timer / transitionSpeed;
 
 			cController.height = Mathf.Lerp(startHeight, targetHeight, t);
-			cController.center = new(0f, Mathf.Lerp(startCenterY, targetCenterY.y, t), 0f);
+			cController.center = Vector3.Lerp(startCenterY, targetCenterY, t);
 			movementSpeed = Mathf.Lerp(startSpeed, targetSpeed, t);
+			cameraTarget.localPosition = Vector3.Lerp(startCamPos, targetCamPos, t);
 			yield return null;
 		}
 
 		cController.height = targetHeight;
 		cController.center = targetCenterY;
-		movementSpeed = isCrouching ? crouchSpeed : walkingSpeed;
+
+		movementSpeed = targetSpeed;
+		cameraTarget.localPosition = targetCamPos;
+
 		crouchRoutine = null;
 	}
-
 
 	private bool CanStandUp() {
 		float radius = cController.radius;
@@ -219,12 +215,12 @@ public class PlayerController : MonoBehaviour {
 
 
 	private IEnumerator RunCoroutine(float transitionSpeed) {
-		isRunning = !isRunning;
+		IsRunning = !IsRunning;
 
 		float timer = 0f;
 		float startSpeed = movementSpeed;
 
-		float targetSpeed = isRunning ? runSpeed : walkingSpeed;
+		float targetSpeed = IsRunning ? runSpeed : walkingSpeed;
 
 		while (timer < transitionSpeed) {
 			timer += Time.deltaTime;
@@ -234,7 +230,7 @@ public class PlayerController : MonoBehaviour {
 			yield return null;
 		}
 
-		movementSpeed = isRunning ? runSpeed : walkingSpeed;
+		movementSpeed = IsRunning ? runSpeed : walkingSpeed;
 		runRoutine = null;
 	}
 
@@ -243,7 +239,7 @@ public class PlayerController : MonoBehaviour {
 		Rigidbody rb = hit.collider.attachedRigidbody;
 
 		if (!rb) return;
-		
+
 		Vector3 dir = faceDirection;
 		dir.y = 0f;
 		dir.Normalize();
