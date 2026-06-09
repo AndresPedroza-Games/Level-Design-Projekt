@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
 
     private GameObject _Camera;
 
+    [field: SerializeField] public Transform _CameraTarget { get; private set; }
+
     void Start()
     {
         Inventory = GetComponent<Inventory>();
