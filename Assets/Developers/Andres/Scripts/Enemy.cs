@@ -15,12 +15,13 @@ public class Enemy : MonoBehaviour
     [Header("Enemy Chasing Settings")]
     [SerializeField] private float _ChasingSpeed = 2f;
     [SerializeField] private float _MinDistancePlayer = 0.5f;
+    [SerializeField] private float _ViewDistance = 5f;
+    [SerializeField] private float _ViewAngle = 90f;
+    [SerializeField] private float _LosePlayerTime = 1f;
+    [SerializeField] private LayerMask _DetectionLayer;
 
-    [Header("Detector Settings")]
-    [SerializeField] private float _Radius = 5f;
-    [SerializeField] private LayerMask _Detectable;
+    private float _TimeSinceLostPlayer;
 
-    private Collider[] _RangeZone;
     private GameObject _Player;
 
     private Dictionary<States, UnityAction> _StateMachine;
@@ -43,7 +44,7 @@ public class Enemy : MonoBehaviour
         };
 
         _Agent = GetComponent<NavMeshAgent>();
-        _Player = FindFirstObjectByType<PlayerController>().gameObject;
+        _Player = FindFirstObjectByType<Player>()._CameraTarget.gameObject;
     }
 
     private void Start()
@@ -53,17 +54,14 @@ public class Enemy : MonoBehaviour
 
         EventSystemController.eventSystemController.onEndGame += () => FreezEnemy(true);
         EventSystemController.eventSystemController.onRestart += () => FreezEnemy(false);
+
+        _CurrentState = States.patrol;
     }
 
     private void Update()
     {
-        if (CheckDistanceWithPlayer())
+        if (CheckDistanceWithPlayer() <= _MinDistancePlayer)
             EventSystemController.eventSystemController.EndGame();
-
-        if (CheckIfPlayerInsideRange())
-            _CurrentState = States.chasing;
-        else
-            _CurrentState = States.patrol;
 
         _StateMachine[_CurrentState].Invoke();
 
@@ -72,31 +70,31 @@ public class Enemy : MonoBehaviour
 
     private void Patrol()
     {
-        if (_CurrentCoroutine != null)
+        if (_CurrentCoroutine != null || _PatrolPoints.Count <= 0)
             return;
 
-        if(_PatrolPoints.Count <= 0)
-        {
-            Debug.Log("There are no patrol points");
-            return;
-        }
+        if(CheckDistanceWithPlayer() <= _ViewDistance && CanSeePlayer())
+            _CurrentState = States.chasing;
 
         _Agent.speed = _PatrolSpeed;
 
         if(!_Agent.pathPending && _Agent.remainingDistance <= _DistanceToPoint)
             _CurrentCoroutine = StartCoroutine(StartPatrol());
-
     }
 
     private void Chasing()
     {
-
-        if (_CurrentCoroutine != null)
-            return;
-
         _Agent.speed = _ChasingSpeed;
+        _Agent.SetDestination(_Player.transform.position);
 
-        _CurrentCoroutine = StartCoroutine(StartChasing());
+        if (!CanSeePlayer())
+        {
+            _TimeSinceLostPlayer += Time.deltaTime;
+            if (_TimeSinceLostPlayer >= _LosePlayerTime)
+                _CurrentState = States.patrol;
+        }
+        else
+            _TimeSinceLostPlayer = 0;
     }
 
     private IEnumerator StartPatrol()
@@ -119,48 +117,44 @@ public class Enemy : MonoBehaviour
         _CurrentCoroutine = null;
     }
 
-    private IEnumerator StartChasing()
+    private bool CanSeePlayer()
     {
-        while (true)
-        {
-            if (CheckIfPlayerInsideRange())
-            {
-                _Agent.SetDestination(_Player.transform.position);
-            }
-            else
-                _CurrentCoroutine = null;
-
-            yield return new WaitForSeconds(0.2f);
-        }
+        return IsFacingPlayer() && HasClearPathToPlayer();
     }
 
-    private bool CheckIfPlayerInsideRange()
+    private bool IsFacingPlayer()
     {
-        _RangeZone = Physics.OverlapSphere(transform.position, _Radius, _Detectable);
+        Vector3 directionToPlayer = (_Player.transform.position - transform.position).normalized;
+        directionToPlayer.y = 0;
 
-        foreach (Collider collision in _RangeZone)
-        {
-            if (collision.GetComponent<PlayerController>() != null)
-            {
-                return true;
-            }
-        }
+        Vector3 forward = transform.forward;
+        forward.y = 0;
 
-        return false;
+        float angle = Vector3.Angle(forward.normalized, directionToPlayer);
+
+        return angle <= _ViewAngle / 2f;
     }
 
-    private bool CheckDistanceWithPlayer()
+    private bool HasClearPathToPlayer()
+    {
+        Vector3 directionToPlayer = _Player.transform.position - transform.position;
+
+        if (Physics.Raycast(transform.position, directionToPlayer.normalized, out RaycastHit hit, directionToPlayer.magnitude))
+            return hit.transform.root == _Player.transform.root;
+
+        return true;
+    }
+
+    private float CheckDistanceWithPlayer()
     {
         Vector3 currentPos = transform.position;
         Vector3 playerPos = _Player.transform.position;
 
         float distance = Vector3.Distance(currentPos, playerPos);
 
-        if (distance <= _MinDistancePlayer)
-            return true;
-
-        return false;
+        return distance;
     }
+
 
     private void FreezEnemy(bool status)
     {
@@ -168,14 +162,29 @@ public class Enemy : MonoBehaviour
             StopAllCoroutines();
 
         this.enabled = !status;
-        _Agent.isStopped = !status;
+        _Agent.isStopped = !status; 
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
 
-        Gizmos.DrawWireSphere(transform.position, _Radius);
+        Vector3 origin = transform.position;
+
+        Gizmos.DrawLine(origin,origin + transform.forward * _ViewDistance);
+
+        Vector3 leftBoundary = Quaternion.Euler(0, -_ViewAngle / 2f, 0) * transform.forward;
+        Vector3 rightBoundary = Quaternion.Euler(0, _ViewAngle / 2f, 0) * transform.forward;
+
+        Gizmos.DrawLine(origin,origin + leftBoundary * _ViewDistance);
+
+        Gizmos.DrawLine(origin,origin + rightBoundary * _ViewDistance);
+
+        if(_Player != null)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(origin, _Player.transform.position);
+        }
     }
 
     private enum States 
