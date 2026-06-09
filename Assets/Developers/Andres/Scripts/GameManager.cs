@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 
     private EventSystemController _EventSystemController;
 
+    public static bool lockIsActive;
+
     private void Start()
     {
         _EventSystemController = EventSystemController.eventSystemController;
