@@ -279,7 +279,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""c8aa6363-a509-4874-a947-f54fee68df7a"",
                     ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Hold(duration=0.1)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Pull"",
