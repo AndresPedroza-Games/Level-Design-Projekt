@@ -12,9 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98a40b73b84fc6246b43dfad9fc17a54, type: 3}
   m_Name: DataContainerPrototype-1.0
   m_EditorClassIdentifier: Assembly-CSharp::DataContainer
-  keyData:
-  - {fileID: 0}
-  - {fileID: 0}
-  doorData:
-  - {fileID: 0}
-  - {fileID: 0}
+  keyData: []
+  doorData: []

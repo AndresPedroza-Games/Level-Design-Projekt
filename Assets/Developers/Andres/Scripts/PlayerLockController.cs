@@ -79,7 +79,7 @@ public class PlayerLockController : MonoBehaviour
         if (!GameManager.lockIsActive)
             return;
 
-        _CameraLock = LockInteractor._Camera;
+        _CameraLock = LockInteractor.Instance._Camera;
 
         Physics.Raycast(_CameraLock.transform.position, _CameraLock.transform.forward, out RaycastHit hit, _RayDistance, _DetectorLayerMask);
 

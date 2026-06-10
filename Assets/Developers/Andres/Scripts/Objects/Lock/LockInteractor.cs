@@ -1,18 +1,24 @@
-using Unity.Cinemachine;
 using UnityEngine;
 
 public class LockInteractor : MonoBehaviour, IInteractable
 {
-    public static GameObject _Camera;
+    public GameObject _Camera;
 
     private EventSystemController _EventSystemController;
+
+    public static LockInteractor Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+    }
 
     private void Start()
     {
         _EventSystemController = EventSystemController.eventSystemController;
         _EventSystemController.onEndInteractionWithLock += ExitInteraction;
 
-        _Camera = FindFirstObjectByType<CinemachineCamera>(FindObjectsInactive.Include).gameObject;
     }
 
     public void Interact(Player player)

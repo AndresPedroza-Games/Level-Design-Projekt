@@ -21,7 +21,7 @@ public class LockPiece : MonoBehaviour, IInteractable
         _EventSystemController.onReleasePiece += ReleasePiece;
 
         _StartPos = transform.position.y;
-        _Camera = LockInteractor._Camera;
+        _Camera = LockInteractor.Instance._Camera;
     }
     
     public void Interact(Player player)
