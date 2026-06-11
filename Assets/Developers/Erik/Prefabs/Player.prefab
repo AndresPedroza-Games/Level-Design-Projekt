@@ -192,6 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerZoom
   fovWhenZooming: 30
+  zoomDuration: 0.1
   cineCam: {fileID: 0}
 --- !u!1 &5417978144585634776
 GameObject:

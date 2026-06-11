@@ -1982,10 +1982,6 @@ PrefabInstance:
       propertyPath: cineCam
       value: 
       objectReference: {fileID: 1901930337}
-    - target: {fileID: 5237743308405267774, guid: 31605fe3830e291478fa8e7714052bec, type: 3}
-      propertyPath: zoomDuration
-      value: 0.1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
