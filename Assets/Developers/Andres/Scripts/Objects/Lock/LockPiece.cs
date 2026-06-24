@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class LockPiece : MonoBehaviour, IInteractable
@@ -29,7 +30,7 @@ public class LockPiece : MonoBehaviour, IInteractable
         if (!_PieceIsSelected)
         {
             MovePiece(_MoveDistance);
-            _PieceIsSelected = true;
+            StartCoroutine(SetActive(true));
             Debug.Log($"Selected Piece {gameObject.name}");
         }
     }
@@ -70,9 +71,15 @@ public class LockPiece : MonoBehaviour, IInteractable
         if (_PieceIsSelected)
         {
             MovePiece(0f);
-            _PieceIsSelected = false;
+            StartCoroutine(SetActive(false));
             Debug.Log("Release");
         }
     }
 
+
+    private IEnumerator SetActive(bool status)
+    {
+        yield return new WaitForSeconds(0.1f);
+        _PieceIsSelected = status;
+    }
 }
