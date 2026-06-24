@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEngine.ProBuilder.Shapes;
 
 public class Lock : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Lock : MonoBehaviour
 
     [SerializeField] private List<int> _Password = new List<int>();
     [SerializeField] private List<LockPiece> _LockPiecesList;
+    [SerializeField] private Door _Door;
 
     private EventSystemController _EventSystemController;
 
@@ -24,7 +26,6 @@ public class Lock : MonoBehaviour
     {
         _EventSystemController = EventSystemController.eventSystemController;
         _EventSystemController.onReleasePiece += PuzzleCompleted;
-        _EventSystemController.onPuzzleCompleted += Test;
 
         _AngleToPassword = new()
         {
@@ -44,7 +45,11 @@ public class Lock : MonoBehaviour
     private void PuzzleCompleted()
     {
         if (CheckIfPuzzleCompleted())
+        {
             _EventSystemController.PuzzleCompleted();
+            _Door.OpenDoor();
+            Debug.Log("Puzzle Completed");
+        }
     }
 
     private bool CheckIfPuzzleCompleted()
@@ -66,10 +71,5 @@ public class Lock : MonoBehaviour
         }
 
         return true;
-    }
-
-    private void Test()
-    {
-        Debug.Log("Puzzle Completed");
     }
 }

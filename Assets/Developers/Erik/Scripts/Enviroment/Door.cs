@@ -4,7 +4,6 @@ public class Door : MonoBehaviour, IInteractable {
     [SerializeField] private GameObject requiredKey;
     [SerializeField] private bool _DontNeedKey;
 
-
     public void Interact(Player player) {
         if (player.Inventory.CurrentKey == null && !_DontNeedKey)
         {
@@ -25,7 +24,7 @@ public class Door : MonoBehaviour, IInteractable {
     }
 
 
-    private void OpenDoor() {
+    public void OpenDoor() {
         gameObject.SetActive(false);
         EventSystemController.eventSystemController.OpenDoor(this);
     }
