@@ -1,0 +1,70 @@
+using System;
+using UnityEngine;
+
+public class EventSystemController : MonoBehaviour
+{
+    public static EventSystemController eventSystemController;
+
+    public Action<Door> onOpenDoor;
+    public Action onRestart;
+
+    public Action onEndGame;
+
+    public Action onInteractWithLock;
+    public Action onEndInteractionWithLock;
+    public Action onPuzzleCompleted;
+
+    public Action onReleasePiece;
+    public Action<Vector2> onRotateLock;
+
+    private void Awake()
+    {
+        if (eventSystemController == null)
+            eventSystemController = this;
+    }
+
+    public void OpenDoor(Door door)
+    {
+        if (onOpenDoor != null)
+            onOpenDoor.Invoke(door);
+    }
+
+    public void Restart()
+    {
+        if (onRestart != null)
+            onRestart.Invoke();
+    }
+
+    public void EndGame()
+    {
+        onEndGame?.Invoke();
+    }
+
+    //Lock Events//
+
+    public void InteractWithLock()
+    {
+        onInteractWithLock?.Invoke();
+    }
+
+    public void ExitLock()
+    {
+        onEndInteractionWithLock?.Invoke();
+    }
+
+    public void RotateLock(Vector2 direction)
+    {
+        onRotateLock?.Invoke(direction);
+    }
+
+    public void ReleasePiece()
+    {
+        onReleasePiece?.Invoke();
+    }
+
+    public void PuzzleCompleted()
+    {
+        onPuzzleCompleted?.Invoke();
+    }
+
+}

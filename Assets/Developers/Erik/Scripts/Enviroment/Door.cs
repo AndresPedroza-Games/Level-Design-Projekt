@@ -2,29 +2,31 @@ using UnityEngine;
 
 
 public class Door : MonoBehaviour, IInteractable {
+    [SerializeField] private GameObject requiredKey;
+    [SerializeField] private bool _DontNeedKey;
 
-	[SerializeField] private GameObject requiredKey;
+    public void Interact(Player player) {
+        if (player.Inventory.CurrentKey == null && !_DontNeedKey)
+        {
+            UIController.uiController.ChangeTextBox("Closed Door");
+            return;
+        }
 
-
-	public void Interact(Player player) {
-		if (!player.Inventory.CurrentHoldItem || player.Inventory.CurrentHoldItem != requiredKey) {
-			OnLockedDoor();
-			return;
-		}
-
-		OpenDoor();
-		player.Inventory.UseItem();
-	}
-
+        if (_DontNeedKey)
+        {
+            OpenDoor();
+            return;
+        }
+    }
 
 	private void OnLockedDoor() {
 		SoundManager.Instance.PlaySound("LockedDoor");
 	}
 
 
-	private void OpenDoor() {
-		SoundManager.Instance.PlaySound("OpenDoor");
-		gameObject.SetActive(false);
-	}
-
+    public void OpenDoor() {
+        gameObject.SetActive(false);
+        SoundManager.Instance.PlaySound("OpenDoor");
+        EventSystemController.eventSystemController.OpenDoor(this);
+    }
 }

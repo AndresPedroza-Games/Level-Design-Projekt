@@ -6,7 +6,31 @@ public class Key : MonoBehaviour, IInteractable {
 
 	public KeyDataSO keyData;
 
-	public bool CanPickUp { get; private set; }
+    public bool isGrabbed;
+
+    public bool CanPickUp { get; private set; }
+
+    private void Awake() {
+        rb = GetComponent<Rigidbody>();
+        col = GetComponent<Collider>();
+    }
+
+    public void Interact(Player player) {
+        if (!CanPickUp)
+            return;
+
+        DisablePhysics();
+        player.Inventory.AddKey(this);
+    }
+
+    private void DisablePhysics() {
+        CanPickUp = false;
+
+        col.enabled = false;
+        rb.useGravity = false;
+        rb.linearVelocity = Vector3.zero;
+        rb.freezeRotation = true;
+    }
 
 
 	public void Interact(Player player) {
