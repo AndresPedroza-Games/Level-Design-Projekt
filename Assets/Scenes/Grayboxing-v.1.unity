@@ -8406,14 +8406,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1424159777570273631, guid: 31605fe3830e291478fa8e7714052bec, type: 3}
-      propertyPath: <_CameraTarget>k__BackingField
-      value: 
-      objectReference: {fileID: 1831874419}
     - target: {fileID: 2250036284471842714, guid: 31605fe3830e291478fa8e7714052bec, type: 3}
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 1525906314}
+    - target: {fileID: 2999502867254255802, guid: 31605fe3830e291478fa8e7714052bec, type: 3}
+      propertyPath: cineCam
+      value: 
+      objectReference: {fileID: 2001498164}
     - target: {fileID: 3069821539534172803, guid: 31605fe3830e291478fa8e7714052bec, type: 3}
       propertyPath: m_LocalPosition.x
       value: 29.81
@@ -8458,17 +8458,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5096466206728675233, guid: 31605fe3830e291478fa8e7714052bec, type: 3}
-      propertyPath: _DetectorLayerMask.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3752413574987406898, guid: 31605fe3830e291478fa8e7714052bec, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1686719259}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31605fe3830e291478fa8e7714052bec, type: 3}
 --- !u!4 &417900985 stripped
 Transform:
@@ -23482,11 +23475,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1197397046}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1203255640 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1655492274647871702, guid: 31605fe3830e291478fa8e7714052bec, type: 3}
-  m_PrefabInstance: {fileID: 417900984}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1206816191
 GameObject:
   m_ObjectHideFlags: 0
@@ -34535,35 +34523,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1683399209}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1686719253 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3752413574987406898, guid: 31605fe3830e291478fa8e7714052bec, type: 3}
-  m_PrefabInstance: {fileID: 417900984}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1686719259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1686719253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20d0322426c059642a980cd3e532a5c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PullSystem
-  _InteractorCenterPos: {fileID: 1203255640}
-  _HalfExtends: {x: 0.5, y: 0.5, z: 0.5}
-  _InteractableMask:
-    serializedVersion: 2
-    m_Bits: 128
-  _Offset: 0.1
-  _SmoothSpeed: 15
-  _BreakDistance: 2
-  _JointLimit: 0.5
-  _PositionSpring: 887.5
-  _PositionDamper: 57.3
-  _MaxForce: 800
 --- !u!1 &1691436382
 GameObject:
   m_ObjectHideFlags: 0
@@ -36829,11 +36788,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 774240de999e2a94283ef365f0a1215b, type: 3}
---- !u!4 &1831874419 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2472414723732080643, guid: 31605fe3830e291478fa8e7714052bec, type: 3}
-  m_PrefabInstance: {fileID: 417900984}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1833645440
 GameObject:
   m_ObjectHideFlags: 0
@@ -40143,6 +40097,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 905633973}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2001498164 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4342368805107762375, guid: 9f84495e46bf32b48b3ffd6e1771ffd8, type: 3}
+  m_PrefabInstance: {fileID: 1525906313}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCamera
 --- !u!1 &2016805731
 GameObject:
   m_ObjectHideFlags: 0

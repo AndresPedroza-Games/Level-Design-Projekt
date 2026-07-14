@@ -6,22 +6,17 @@ public class Door : MonoBehaviour, IInteractable {
     [SerializeField] private bool _DontNeedKey;
 
     public void Interact(Player player) {
-        if (player.Inventory.CurrentKey == null && !_DontNeedKey)
-        {
-            UIController.uiController.ChangeTextBox("Closed Door");
-            return;
-        }
 
-        if (_DontNeedKey)
+        if (_DontNeedKey || player.Inventory.CurrentHoldItem == requiredKey)
         {
+	        player.Inventory.UseKey();
             OpenDoor();
             return;
         }
+        
+	    UIController.uiController.ChangeTextBox("Closed Door");
+	    SoundManager.Instance.PlaySound("LockedDoor");
     }
-
-	private void OnLockedDoor() {
-		SoundManager.Instance.PlaySound("LockedDoor");
-	}
 
 
     public void OpenDoor() {

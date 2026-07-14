@@ -254,7 +254,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Throw"",
                     ""type"": ""Button"",
-                    ""id"": ""3203fa0f-f9b2-4ca7-922f-d0ce22daf734""
+                    ""id"": ""3203fa0f-f9b2-4ca7-922f-d0ce22daf734"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -316,6 +316,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
+                    ""name"": """",
                     ""id"": ""c8aa6363-a509-4874-a947-f54fee68df7a"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": ""Hold(duration=0.1)"",
@@ -754,6 +755,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Interaction/Throw".
         /// </summary>
         public InputAction @Throw => m_Wrapper.m_Interaction_Throw;
+        /// <summary>
         /// Provides access to the underlying input action "Interaction/Pull".
         /// </summary>
         public InputAction @Pull => m_Wrapper.m_Interaction_Pull;
@@ -1163,7 +1165,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnDrop(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Zoom" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// Method invoked when associated input action "Pull" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
@@ -1177,7 +1178,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnThrow(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Throw" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Pull" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />

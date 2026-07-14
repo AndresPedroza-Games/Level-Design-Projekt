@@ -43,10 +43,11 @@ GameObject:
   - component: {fileID: 6735597100891630515}
   - component: {fileID: 1424159777570273631}
   - component: {fileID: 2250036284471842714}
-  - component: {fileID: 7281722276334530156}
   - component: {fileID: 7638531950453145193}
-  - component: {fileID: 3284762386804337125}
-  - component: {fileID: 5237743308405267774}
+  - component: {fileID: 4209187308894585924}
+  - component: {fileID: 2999502867254255802}
+  - component: {fileID: 2768715159906879687}
+  - component: {fileID: 7404907777651715945}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -113,6 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   _Camera: {fileID: 5434137942862074631}
+  <_CameraTarget>k__BackingField: {fileID: 2472414723732080643}
 --- !u!114 &2250036284471842714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,20 +140,6 @@ MonoBehaviour:
   crouchCameraTargetHeight: 1
   gravityMultiplier: 3
   maxFallSpeed: -50
---- !u!114 &7281722276334530156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3752413574987406898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a1cb4be972c6f8479da95a6575c65aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Inventory
-  itemSocket: {fileID: 241229813207165429}
-  itemDropPos: {fileID: 7751527190836319500}
 --- !u!114 &7638531950453145193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,6 +157,72 @@ MonoBehaviour:
   interactableMask:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &4209187308894585924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3752413574987406898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82b6d1ce0e377af4e9a5c0f1a15d8788, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Inventory
+  keySocket: {fileID: 241229813207165429}
+  itemDropPos: {fileID: 7751527190836319500}
+--- !u!114 &2999502867254255802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3752413574987406898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bd4095c87e612244b8fddd8994c3e54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerZoom
+  fovWhenZooming: 30
+  zoomDuration: 0.2
+  cineCam: {fileID: 0}
+--- !u!114 &2768715159906879687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3752413574987406898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa52f883aba00404db141ae1b260d215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerThrow
+  throwForce: 10
+--- !u!114 &7404907777651715945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3752413574987406898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20d0322426c059642a980cd3e532a5c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PullSystem
+  _InteractorCenterPos: {fileID: 1655492274647871702}
+  _HalfExtends: {x: 0.5, y: 0.5, z: 0.5}
+  _InteractableMask:
+    serializedVersion: 2
+    m_Bits: 128
+  _Offset: 0.1
+  _SmoothSpeed: 15
+  _BreakDistance: 2
+  _JointLimit: 0.5
+  _PositionSpring: 887.5
+  _PositionDamper: 57.3
+  _MaxForce: 800
 --- !u!1 &4859528034386561999
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,7 +661,7 @@ MonoBehaviour:
   _RayDistance: 2
   _DetectorLayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 128
   _Crosshair: {fileID: 8419623092652766480}
 --- !u!1001 &3584354571954518558
 PrefabInstance:

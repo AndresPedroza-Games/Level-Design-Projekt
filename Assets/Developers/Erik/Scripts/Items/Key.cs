@@ -4,6 +4,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody), typeof(Collider))]
 public class Key : MonoBehaviour, IInteractable {
 
+	private Rigidbody rb;
+	private Collider col;
+	
 	public KeyDataSO keyData;
 
     public bool isGrabbed;
@@ -15,13 +18,15 @@ public class Key : MonoBehaviour, IInteractable {
         col = GetComponent<Collider>();
     }
 
-    public void Interact(Player player) {
-        if (!CanPickUp)
-            return;
-
-        DisablePhysics();
-        player.Inventory.AddKey(this);
-    }
+ 
+	public void Interact(Player player) {
+		if (!CanPickUp)
+			return;
+		
+		DisablePhysics();
+		CanPickUp = false;
+		player.Inventory.AddItem(gameObject);
+	}
 
     private void DisablePhysics() {
         CanPickUp = false;
@@ -31,15 +36,17 @@ public class Key : MonoBehaviour, IInteractable {
         rb.linearVelocity = Vector3.zero;
         rb.freezeRotation = true;
     }
+    
+    public void EnablePhysics() {
+	    CanPickUp = true;
+
+	    col.enabled = true;
+	    rb.useGravity = true;
+	    rb.linearVelocity = Vector3.zero;
+	    rb.freezeRotation = false;
+    }
 
 
-	public void Interact(Player player) {
-		if (!CanPickUp)
-			return;
-
-		CanPickUp = false;
-		player.Inventory.AddItem(gameObject);
-	}
 
 
 	private void OnCollisionEnter(Collision collision) {
