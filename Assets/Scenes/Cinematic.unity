@@ -843,34 +843,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dust Lobby
       objectReference: {fileID: 0}
-    - target: {fileID: 5387695067247202525, guid: 4b53ce99e06d6e541b7777dc9fb38059, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9132974494530077400, guid: 4b53ce99e06d6e541b7777dc9fb38059, type: 3}
-      propertyPath: ShapeModule.radius.value
-      value: 5.78
-      objectReference: {fileID: 0}
-    - target: {fileID: 9132974494530077400, guid: 4b53ce99e06d6e541b7777dc9fb38059, type: 3}
-      propertyPath: InitialModule.maxNumParticles
-      value: 10000
-      objectReference: {fileID: 0}
-    - target: {fileID: 9132974494530077400, guid: 4b53ce99e06d6e541b7777dc9fb38059, type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 9132974494530077400, guid: 4b53ce99e06d6e541b7777dc9fb38059, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.14117648
-      objectReference: {fileID: 0}
-    - target: {fileID: 9132974494530077400, guid: 4b53ce99e06d6e541b7777dc9fb38059, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.17254902
-      objectReference: {fileID: 0}
-    - target: {fileID: 9132974494530077400, guid: 4b53ce99e06d6e541b7777dc9fb38059, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 0.2784314
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6004,6 +5976,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275780557}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &289823890 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9025435444988080515, guid: c4cc3cc9ac499864f882426702a19b05, type: 3}
+  m_PrefabInstance: {fileID: 1274768630}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &291269088
 GameObject:
   m_ObjectHideFlags: 0
@@ -6925,7 +6902,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5387695067247202525, guid: 4b53ce99e06d6e541b7777dc9fb38059, type: 3}
       propertyPath: m_Name
-      value: Dust Hallway (1)
+      value: Dust Hallway 2
       objectReference: {fileID: 0}
     - target: {fileID: 5387695067247202525, guid: 4b53ce99e06d6e541b7777dc9fb38059, type: 3}
       propertyPath: m_IsActive
@@ -6949,7 +6926,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9132974494530077400, guid: 4b53ce99e06d6e541b7777dc9fb38059, type: 3}
       propertyPath: ShapeModule.radiusThickness
-      value: 1.0000
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9132974494530077400, guid: 4b53ce99e06d6e541b7777dc9fb38059, type: 3}
       propertyPath: InitialModule.maxNumParticles
@@ -22005,11 +21982,11 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1735529084}
+    m_TransformParent: {fileID: 1405154551}
     m_Modifications:
     - target: {fileID: 9025435444988080512, guid: c4cc3cc9ac499864f882426702a19b05, type: 3}
       propertyPath: m_Name
-      value: Whitish Fog
+      value: Whitish Fog Hallway
       objectReference: {fileID: 0}
     - target: {fileID: 9025435444988080512, guid: c4cc3cc9ac499864f882426702a19b05, type: 3}
       propertyPath: m_IsActive
@@ -24792,7 +24769,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1461667253379377181, guid: 28f607757e71ad2469e462cf2d2c7cf5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1492840115969449089, guid: 28f607757e71ad2469e462cf2d2c7cf5, type: 3}
       propertyPath: m_Range
@@ -24840,39 +24817,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7729811553168122257, guid: 28f607757e71ad2469e462cf2d2c7cf5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 29.552
+      value: 25.98
       objectReference: {fileID: 0}
     - target: {fileID: 7729811553168122257, guid: 28f607757e71ad2469e462cf2d2c7cf5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.018
+      value: 1.049
       objectReference: {fileID: 0}
     - target: {fileID: 7729811553168122257, guid: 28f607757e71ad2469e462cf2d2c7cf5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -45.981
+      value: -46.283
       objectReference: {fileID: 0}
     - target: {fileID: 7729811553168122257, guid: 28f607757e71ad2469e462cf2d2c7cf5, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.27981585
+      value: 0.3319609
       objectReference: {fileID: 0}
     - target: {fileID: 7729811553168122257, guid: 28f607757e71ad2469e462cf2d2c7cf5, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.048659578
+      value: 0.04017167
       objectReference: {fileID: 0}
     - target: {fileID: 7729811553168122257, guid: 28f607757e71ad2469e462cf2d2c7cf5, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.94464284
+      value: 0.93561167
       objectReference: {fileID: 0}
     - target: {fileID: 7729811553168122257, guid: 28f607757e71ad2469e462cf2d2c7cf5, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.16427206
+      value: -0.11322143
       objectReference: {fileID: 0}
     - target: {fileID: 7729811553168122257, guid: 28f607757e71ad2469e462cf2d2c7cf5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -19.73
+      value: 13.8
       objectReference: {fileID: 0}
     - target: {fileID: 7729811553168122257, guid: 28f607757e71ad2469e462cf2d2c7cf5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 213
+      value: 140.93
       objectReference: {fileID: 0}
     - target: {fileID: 7729811553168122257, guid: 28f607757e71ad2469e462cf2d2c7cf5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -27563,6 +27540,63 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1267448692}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1274768630
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1405154551}
+    m_Modifications:
+    - target: {fileID: 9025435444988080512, guid: c4cc3cc9ac499864f882426702a19b05, type: 3}
+      propertyPath: m_Name
+      value: Whitish Fog Exterior
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025435444988080515, guid: c4cc3cc9ac499864f882426702a19b05, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 24.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025435444988080515, guid: c4cc3cc9ac499864f882426702a19b05, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025435444988080515, guid: c4cc3cc9ac499864f882426702a19b05, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -67.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025435444988080515, guid: c4cc3cc9ac499864f882426702a19b05, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025435444988080515, guid: c4cc3cc9ac499864f882426702a19b05, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025435444988080515, guid: c4cc3cc9ac499864f882426702a19b05, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025435444988080515, guid: c4cc3cc9ac499864f882426702a19b05, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025435444988080515, guid: c4cc3cc9ac499864f882426702a19b05, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025435444988080515, guid: c4cc3cc9ac499864f882426702a19b05, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025435444988080515, guid: c4cc3cc9ac499864f882426702a19b05, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c4cc3cc9ac499864f882426702a19b05, type: 3}
 --- !u!1 &1276410155 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5387695067247202525, guid: 4b53ce99e06d6e541b7777dc9fb38059, type: 3}
@@ -30850,6 +30884,40 @@ Transform:
   - {fileID: 259315239}
   - {fileID: 1076229669}
   m_Father: {fileID: 1850826434}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1405154550
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1405154551}
+  m_Layer: 0
+  m_Name: Fog
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1405154551
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405154550}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 289823890}
+  - {fileID: 1692300875}
+  - {fileID: 1030381255}
+  m_Father: {fileID: 1735529084}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1405855009
 GameObject:
@@ -35030,7 +35098,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5387695067247202525, guid: 4b53ce99e06d6e541b7777dc9fb38059, type: 3}
       propertyPath: m_Name
-      value: Dust Hallway
+      value: Dust Hallway 1
       objectReference: {fileID: 0}
     - target: {fileID: 5387695067247202525, guid: 4b53ce99e06d6e541b7777dc9fb38059, type: 3}
       propertyPath: m_IsActive
@@ -37551,6 +37619,8 @@ PlayableDirector:
     value: {fileID: 818314224}
   - key: {fileID: 211496313171138164, guid: addce196ba821004d9323abda7dc4758, type: 2}
     value: {fileID: 1714673837}
+  - key: {fileID: 7038778593843894729, guid: addce196ba821004d9323abda7dc4758, type: 2}
+    value: {fileID: 1692300876}
   m_ExposedReferences:
     m_References:
     - fef98c923519fba4895c45939385b919: {fileID: 417900986}
@@ -37780,6 +37850,77 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1970114784001716356, guid: 04cb55d1ac54ad74b9a32cdd60a7e4b2, type: 3}
   m_PrefabInstance: {fileID: 1691514866}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1692300874
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1405154551}
+    m_Modifications:
+    - target: {fileID: 9025435444988080512, guid: c4cc3cc9ac499864f882426702a19b05, type: 3}
+      propertyPath: m_Name
+      value: Whitish Fog Lobby
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025435444988080515, guid: c4cc3cc9ac499864f882426702a19b05, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 29.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025435444988080515, guid: c4cc3cc9ac499864f882426702a19b05, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025435444988080515, guid: c4cc3cc9ac499864f882426702a19b05, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -43.489
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025435444988080515, guid: c4cc3cc9ac499864f882426702a19b05, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025435444988080515, guid: c4cc3cc9ac499864f882426702a19b05, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025435444988080515, guid: c4cc3cc9ac499864f882426702a19b05, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025435444988080515, guid: c4cc3cc9ac499864f882426702a19b05, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025435444988080515, guid: c4cc3cc9ac499864f882426702a19b05, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025435444988080515, guid: c4cc3cc9ac499864f882426702a19b05, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025435444988080515, guid: c4cc3cc9ac499864f882426702a19b05, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025435444988080573, guid: c4cc3cc9ac499864f882426702a19b05, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 2.5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c4cc3cc9ac499864f882426702a19b05, type: 3}
+--- !u!4 &1692300875 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9025435444988080515, guid: c4cc3cc9ac499864f882426702a19b05, type: 3}
+  m_PrefabInstance: {fileID: 1692300874}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1692300876 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9025435444988080512, guid: c4cc3cc9ac499864f882426702a19b05, type: 3}
+  m_PrefabInstance: {fileID: 1692300874}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1694096170
 PrefabInstance:
@@ -39092,9 +39233,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1030381255}
   - {fileID: 199874266}
   - {fileID: 365073015}
+  - {fileID: 1405154551}
   m_Father: {fileID: 1262896587}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1740989169
