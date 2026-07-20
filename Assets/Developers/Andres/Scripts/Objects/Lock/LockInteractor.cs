@@ -27,6 +27,7 @@ public class LockInteractor : MonoBehaviour, IInteractable
         _Camera.SetActive(true);
         gameObject.SetActive(false);
         GameManager.lockIsActive = true;
+        FindFirstObjectByType<PlayerController>()._Design.SetActive(false);
     }
 
     public void ExitInteraction()
@@ -34,5 +35,6 @@ public class LockInteractor : MonoBehaviour, IInteractable
         _Camera.SetActive(false);
         gameObject.SetActive(true);
         GameManager.lockIsActive = false;
+        FindFirstObjectByType<PlayerController>()._Design.SetActive(true);
     }
 }

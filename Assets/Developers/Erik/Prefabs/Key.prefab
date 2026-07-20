@@ -70,7 +70,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7321231ac4f38d643824a1b4a32742eb, type: 2}
+  - {fileID: 2100000, guid: 8f3e96520bc3c61488c9a297c960dba4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -164,13 +164,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1750190911740119012}
     m_Modifications:
+    - target: {fileID: 531074588309916259, guid: 886699dfd5bf37640805a7c389d515eb, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 531074588309916259, guid: 886699dfd5bf37640805a7c389d515eb, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 3840
+      objectReference: {fileID: 0}
+    - target: {fileID: 531074588309916259, guid: 886699dfd5bf37640805a7c389d515eb, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 2160
+      objectReference: {fileID: 0}
+    - target: {fileID: 2063772749012293317, guid: 886699dfd5bf37640805a7c389d515eb, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4256887311565880970, guid: 886699dfd5bf37640805a7c389d515eb, type: 3}
       propertyPath: m_Pivot.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4256887311565880970, guid: 886699dfd5bf37640805a7c389d515eb, type: 3}
       propertyPath: m_Pivot.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4256887311565880970, guid: 886699dfd5bf37640805a7c389d515eb, type: 3}
       propertyPath: m_AnchorMax.x
@@ -190,11 +206,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4256887311565880970, guid: 886699dfd5bf37640805a7c389d515eb, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1920
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4256887311565880970, guid: 886699dfd5bf37640805a7c389d515eb, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1080
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4256887311565880970, guid: 886699dfd5bf37640805a7c389d515eb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4256887311565880970, guid: 886699dfd5bf37640805a7c389d515eb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4256887311565880970, guid: 886699dfd5bf37640805a7c389d515eb, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4256887311565880970, guid: 886699dfd5bf37640805a7c389d515eb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -206,7 +234,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4256887311565880970, guid: 886699dfd5bf37640805a7c389d515eb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.735
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4256887311565880970, guid: 886699dfd5bf37640805a7c389d515eb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -226,7 +254,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4256887311565880970, guid: 886699dfd5bf37640805a7c389d515eb, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.08
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4256887311565880970, guid: 886699dfd5bf37640805a7c389d515eb, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -244,6 +272,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5787495713849736683, guid: 886699dfd5bf37640805a7c389d515eb, type: 3}
+      propertyPath: _Parent
+      value: 
+      objectReference: {fileID: 1750190911740119012}
     - target: {fileID: 8993276988463231592, guid: 886699dfd5bf37640805a7c389d515eb, type: 3}
       propertyPath: m_Name
       value: Interactable UI

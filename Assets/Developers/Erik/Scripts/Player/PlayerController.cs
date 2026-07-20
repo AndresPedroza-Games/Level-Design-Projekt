@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour {
 	private CharacterController cController;
 	public event Action<bool> OnCrouchChanged;
 
+	public GameObject _Design;
+
 	[Header("---CineMachine---")]
 	[SerializeField] private Transform cameraTransform;
 	[SerializeField] private Transform cameraTarget;

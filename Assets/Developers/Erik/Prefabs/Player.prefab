@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8000e5ec4cac9e419e97015f16d8ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  _Design: {fileID: 4431338279923107663}
   cameraTransform: {fileID: 0}
   cameraTarget: {fileID: 2472414723732080643}
   walkingSpeed: 2.5
