@@ -71,7 +71,6 @@ public class PullSystem : MonoBehaviour
 
     private void FixedUpdate()
     {
-        CheckJointState();
         MoveHoldPosition();
         UpdateRotation();
     }
@@ -117,20 +116,6 @@ public class PullSystem : MonoBehaviour
         Debug.Log("Release");
 
     }
-
-    private void CheckJointState()
-    {
-        if (!_CurrentHoldGameObject)
-            return;
-
-        float distance = Vector3.Distance(_InteractorCenterPos.position, _CurrentHoldGameObject.position);
-
-        if (distance > _BreakDistance)
-        {
-            //_holdable.Release();
-        }
-    }
-
 
     private void UpdateRotation()
     {
