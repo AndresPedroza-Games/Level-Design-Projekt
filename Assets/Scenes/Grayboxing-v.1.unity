@@ -8744,6 +8744,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 9181470493365729621, guid: 31605fe3830e291478fa8e7714052bec, type: 3}
+      propertyPath: m_PixelPerfect
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9181470493365729621, guid: 31605fe3830e291478fa8e7714052bec, type: 3}
+      propertyPath: m_VertexColorAlwaysGammaSpace
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -44485,6 +44493,18 @@ PrefabInstance:
     - target: {fileID: 2779110262833082030, guid: 45035ccd55ac95e408cfae08f2ce864f, type: 3}
       propertyPath: m_Name
       value: Box
+      objectReference: {fileID: 0}
+    - target: {fileID: 5468271613205237030, guid: 45035ccd55ac95e408cfae08f2ce864f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5676116
+      objectReference: {fileID: 0}
+    - target: {fileID: 5468271613205237030, guid: 45035ccd55ac95e408cfae08f2ce864f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.74813616
+      objectReference: {fileID: 0}
+    - target: {fileID: 5468271613205237030, guid: 45035ccd55ac95e408cfae08f2ce864f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.710283
       objectReference: {fileID: 0}
     - target: {fileID: 5468271613205237030, guid: 45035ccd55ac95e408cfae08f2ce864f, type: 3}
       propertyPath: m_LocalPosition.x

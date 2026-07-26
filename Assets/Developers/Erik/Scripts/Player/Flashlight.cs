@@ -10,6 +10,7 @@ public class Flashlight : MonoBehaviour {
 
 	private void Awake() {
 		_light = GetComponent<Light>();
+		_light.enabled = isOn;
 	}
 
 

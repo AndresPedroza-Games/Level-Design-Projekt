@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+[DefaultExecutionOrder(-10)]
 public class EventSystemController : MonoBehaviour
 {
     public static EventSystemController eventSystemController;
