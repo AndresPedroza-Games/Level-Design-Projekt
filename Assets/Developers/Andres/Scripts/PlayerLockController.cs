@@ -52,7 +52,6 @@ public class PlayerLockController : MonoBehaviour
     {
         _Camera.SetActive(false);
         _Player.FreezCharacter(true);
-        _Crosshair.SetActive(true);
     }
 
     private void ExitLock(InputAction.CallbackContext ctx)
@@ -60,7 +59,6 @@ public class PlayerLockController : MonoBehaviour
         _EventSystemController.ExitLock();
         _Camera.SetActive(true);
         _Player.FreezCharacter(false);
-        _Crosshair.SetActive(false);
     }
 
     private void RotateLock(InputAction.CallbackContext ctx)
@@ -81,10 +79,12 @@ public class PlayerLockController : MonoBehaviour
 
         _CameraLock = LockInteractor.Instance._Camera;
 
-        Physics.Raycast(_CameraLock.transform.position, _CameraLock.transform.forward, out RaycastHit hit, _RayDistance, _DetectorLayerMask);
-
-        if (hit.collider.TryGetComponent<IInteractable>(out IInteractable interactable))
-            interactable.Interact(GetComponentInParent<Player>());
+        if (Physics.Raycast(_CameraLock.transform.position, _CameraLock.transform.forward, out RaycastHit hit, _RayDistance, _DetectorLayerMask)) {
+	        if (hit.collider.TryGetComponent(out IInteractable interactable))
+		        interactable.Interact(_Player);
+        }
+        
+        
     }
 
     private void OnDrawGizmos()

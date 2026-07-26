@@ -53,6 +53,7 @@ MonoBehaviour:
   - {fileID: 3630608060707415866}
   - {fileID: 3744031688077103929}
   - {fileID: 6047820794383002426}
+  _Door: {fileID: 0}
 --- !u!1 &3954048140913673871
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,7 +198,7 @@ MonoBehaviour:
       Enabled: 1
       Input:
         InputAction: {fileID: -5630151704836100654, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-        Gain: 2
+        Gain: -2
         CancelDeltaTime: 0
       InputValue: 0
       Driver:
@@ -250,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b07a4afa55ecfa45abe0295d8565516, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lock
-  _Camera: {fileID: 0}
+  _Camera: {fileID: 3954048140913673871}
 --- !u!65 &4776933981348577352
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -318,7 +319,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b6bef8e616618874aaa092edfd01f370, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b6bef8e616618874aaa092edfd01f370, type: 3}
       propertyPath: m_LocalRotation.x
@@ -326,7 +327,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b6bef8e616618874aaa092edfd01f370, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b6bef8e616618874aaa092edfd01f370, type: 3}
       propertyPath: m_LocalRotation.z
@@ -338,7 +339,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b6bef8e616618874aaa092edfd01f370, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b6bef8e616618874aaa092edfd01f370, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -392,6 +393,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -918203162462069120, guid: b6bef8e616618874aaa092edfd01f370, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3ea8d45d86315084aa11029859e7b6bb, type: 2}
     - target: {fileID: 919132149155446097, guid: b6bef8e616618874aaa092edfd01f370, type: 3}
       propertyPath: m_Name
       value: Design
@@ -424,21 +429,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4173773629678267936, guid: b6bef8e616618874aaa092edfd01f370, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6a22d3756fe252b40a6c22fec44af81f, type: 2}
     - target: {fileID: 4583831647803674585, guid: b6bef8e616618874aaa092edfd01f370, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 4672379520328151868, guid: b6bef8e616618874aaa092edfd01f370, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 39ee331ec09606d42a6b5c3e47d3e227, type: 2}
+    - target: {fileID: 4880702764238861223, guid: b6bef8e616618874aaa092edfd01f370, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f0a91a7acf3f57546b4d237e46f8f6c9, type: 2}
     - target: {fileID: 5531777845261490984, guid: b6bef8e616618874aaa092edfd01f370, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6810669400427791379, guid: b6bef8e616618874aaa092edfd01f370, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7028254088279448452, guid: b6bef8e616618874aaa092edfd01f370, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour {
 	public event Action<bool> OnCrouchChanged;
 
 	[Header("---CineMachine---")]
-	[SerializeField] private Transform cameraTransform;
 	[SerializeField] private Transform cameraTarget;
 
 
@@ -108,8 +107,8 @@ public class PlayerController : MonoBehaviour {
 
 
 	private void HandleMovement() {
-		Vector3 forward = cameraTransform.forward;
-		Vector3 right = cameraTransform.right;
+		Vector3 forward = cameraTarget.forward;
+		Vector3 right = cameraTarget.right;
 
 		forward.y = 0f;
 		right.y = 0f;
@@ -127,7 +126,7 @@ public class PlayerController : MonoBehaviour {
 
 
 	private void HandleRotation() {
-		Vector3 dir = cameraTransform.forward;
+		Vector3 dir = cameraTarget.forward;
 		dir.y = 0f;
 		Quaternion targetRotation = Quaternion.LookRotation(dir);
 		transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);

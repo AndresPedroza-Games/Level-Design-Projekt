@@ -65,7 +65,7 @@ public class Enemy : MonoBehaviour
 
         _StateMachine[_CurrentState].Invoke();
 
-        Debug.Log($"Enemy current state: {_CurrentState}");
+        // Debug.Log($"Enemy current state: {_CurrentState}");
     }
 
     private void Patrol()
