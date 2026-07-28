@@ -70,7 +70,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7321231ac4f38d643824a1b4a32742eb, type: 2}
+  - {fileID: 2100000, guid: 8f3e96520bc3c61488c9a297c960dba4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -243,6 +243,18 @@ PrefabInstance:
     - target: {fileID: 4256887311565880970, guid: 886699dfd5bf37640805a7c389d515eb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5621907283376664736, guid: 886699dfd5bf37640805a7c389d515eb, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5621907283376664736, guid: 886699dfd5bf37640805a7c389d515eb, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5621907283376664736, guid: 886699dfd5bf37640805a7c389d515eb, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8993276988463231592, guid: 886699dfd5bf37640805a7c389d515eb, type: 3}
       propertyPath: m_Name

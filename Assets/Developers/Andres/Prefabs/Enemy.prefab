@@ -385,6 +385,7 @@ GameObject:
   - component: {fileID: 6798198861221586730}
   - component: {fileID: 2730797887630447183}
   - component: {fileID: 4841777420921956114}
+  - component: {fileID: 5205026261048461985}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -430,10 +431,12 @@ MonoBehaviour:
   - {fileID: 0}
   _ChasingSpeed: 2
   _MinDistancePlayer: 1.5
-  _Radius: 7
-  _Detectable:
+  _ViewDistance: 5
+  _ViewAngle: 90
+  _LosePlayerTime: 1
+  _DetectionLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
 --- !u!195 &4841777420921956114
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -456,3 +459,24 @@ NavMeshAgent:
   m_BaseOffset: 0.8
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &5205026261048461985
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8186409965165210874}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.81062806, y: 1.5812614, z: 0.822698}
+  m_Center: {x: 0, y: 0, z: 0}
