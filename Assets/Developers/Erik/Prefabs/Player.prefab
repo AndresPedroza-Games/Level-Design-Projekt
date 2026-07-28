@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa52f883aba00404db141ae1b260d215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerThrow
-  throwForce: 10
+  throwForce: 15
 --- !u!114 &7404907777651715945
 MonoBehaviour:
   m_ObjectHideFlags: 0
