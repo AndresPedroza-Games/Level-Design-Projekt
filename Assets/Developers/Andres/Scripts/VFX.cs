@@ -9,12 +9,10 @@ public class VFX : MonoBehaviour
     [SerializeField] private float _CoolDownLightingBolt = 0.1f;
 
     private bool _CanDropBolt;
-    private bool _LightIsActive;
 
     private void Awake()
     {
         _CanDropBolt = true;
-        _LightIsActive = true;
     }
 
     private void Update()
@@ -33,6 +31,13 @@ public class VFX : MonoBehaviour
             bolt.Play();
         }
     }
+    private void StopParticle(List<ParticleSystem> particles)
+    {
+        foreach (ParticleSystem bolt in particles)
+        {
+            bolt.Stop();
+        }
+    }
 
     private IEnumerator RestartBolt()
     {
@@ -40,5 +45,4 @@ public class VFX : MonoBehaviour
         StartParticle(_BoltParticles);
         _CanDropBolt = true;
     }
-
 }
