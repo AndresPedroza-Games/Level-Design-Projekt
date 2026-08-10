@@ -18,7 +18,6 @@ public class MainMenu : MonoBehaviour
     private void OnStart()
     {
         SceneManager.LoadScene(sceneToLoadOnStart);
-        InputManager.Instance.Controls.Enable();
         Time.timeScale = 1f;
     }
 
