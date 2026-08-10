@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 98345660811385185}
   - component: {fileID: 1734840155014119170}
   - component: {fileID: 514226003726164551}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 461355719686115516}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Design
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 8274342974339631814}
   - component: {fileID: 85484569962036532}
   - component: {fileID: 2495417472239926032}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +176,7 @@ Transform:
   m_GameObject: {fileID: 7913643039790043645}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.384, y: 0, z: -0.03}
+  m_LocalPosition: {x: -0.031, y: 0, z: 0.452}
   m_LocalScale: {x: 0.40554, y: 1, z: 0.2626158}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 6788504012278485670}
   - component: {fileID: 723291463085061936}
   - component: {fileID: 1505839973794715682}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -386,7 +386,7 @@ GameObject:
   - component: {fileID: 2730797887630447183}
   - component: {fileID: 4841777420921956114}
   - component: {fileID: 5205026261048461985}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -421,8 +421,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 675d85de50569624aa40bd46ba009de7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  _PatrolSpeed: 1
-  _DistanceToPoint: 0.1
+  _PatrolSpeed: 2
+  _DistanceToPoint: 0.5
   _WaitingTime: 1
   _PatrolPoints:
   - {fileID: 0}
@@ -431,12 +431,13 @@ MonoBehaviour:
   - {fileID: 0}
   _ChasingSpeed: 2
   _MinDistancePlayer: 1.5
-  _ViewDistance: 5
+  _ViewDistance: 7
   _ViewAngle: 90
   _LosePlayerTime: 1
   _DetectionLayer:
     serializedVersion: 2
     m_Bits: 0
+  _DistractionTime: 5
 --- !u!195 &4841777420921956114
 NavMeshAgent:
   m_ObjectHideFlags: 0
