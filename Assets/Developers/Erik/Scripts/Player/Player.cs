@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public Inventory Inventory { get; private set; }
 
     public GameObject _Camera;
+    public GameObject body;
 
     private void Awake()
     {
