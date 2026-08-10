@@ -22,7 +22,8 @@ public class Throwable : MonoBehaviour, IInteractable, IThrowable {
 	}
 
 
-	public void Throw(Vector3 dir, float force) {
+	public void Throw(Vector3 startPosition, Vector3 dir, float force) {
+		transform.position = startPosition;
 		rb.AddForce(dir * force, ForceMode.Impulse);
 	}
 

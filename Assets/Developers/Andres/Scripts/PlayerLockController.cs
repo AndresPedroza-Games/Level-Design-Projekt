@@ -1,6 +1,6 @@
-using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 
 public class PlayerLockController : MonoBehaviour
 {
@@ -19,6 +19,7 @@ public class PlayerLockController : MonoBehaviour
     {
         _EventSystemController = EventSystemController.eventSystemController;
         _EventSystemController.onInteractWithLock += InteractLock;
+        _EventSystemController.onPuzzleCompleted += ExitLockOnComplete;
 
         _Player = Player.Instance;
 
@@ -46,19 +47,27 @@ public class PlayerLockController : MonoBehaviour
         InputManager.Instance.ReleasePiece.performed -= RelasePiece;
         InputManager.Instance.SelectPiece.performed -= SelectPiece;
 
+        _EventSystemController.onPuzzleCompleted -= ExitLockOnComplete;
     }
 
     private void InteractLock()
     {
         _Camera.SetActive(false);
-        _Player.FreezCharacter(true);
+        _Player.FreezeCharacter(true);
     }
 
     private void ExitLock(InputAction.CallbackContext ctx)
     {
         _EventSystemController.ExitLock();
         _Camera.SetActive(true);
-        _Player.FreezCharacter(false);
+        _Player.FreezeCharacter(false);
+    }
+
+
+    private void ExitLockOnComplete() {
+	    _EventSystemController.ExitLock();
+	    _Camera.SetActive(true);
+	    _Player.FreezeCharacter(false);
     }
 
     private void RotateLock(InputAction.CallbackContext ctx)

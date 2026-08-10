@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: 7eb0257f316e4ee4b929cb0bb17cc2e1
   - enabled: 1
-    path: Assets/Scenes/Grayboxing-v.1.unity
-    guid: d2a3747b810caa74f976db142f21768b
+    path: Assets/Scenes/Grayboxing-v.2.unity
+    guid: f31666e41eff0274cb21dd7a0bd1d370
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 5eac209d37965594d8e4cb2d5fe488eb, type: 3}
   m_UseUCBPForAssetBundles: 0

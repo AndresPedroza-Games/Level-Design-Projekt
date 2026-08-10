@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 public class Door : MonoBehaviour, IInteractable {
@@ -11,6 +12,9 @@ public class Door : MonoBehaviour, IInteractable {
 	[Header("---Double Door Config---")]
 	[SerializeField] private bool isDoubleDoor;
 	[SerializeField] private List<GameObject> doors;
+
+	[Header("---On Open Action---")]
+	public UnityEvent onOpenAction;
 
 
 	public void Interact(Player player) {
@@ -34,10 +38,12 @@ public class Door : MonoBehaviour, IInteractable {
 				door.SetActive(false);
 			}
 		}
-
-		gameObject.SetActive(false);
+		
+		onOpenAction?.Invoke();
 		SoundManager.Instance.PlaySound("OpenDoor");
 		EventSystemController.eventSystemController.OpenDoor(this);
+		
+		gameObject.SetActive(false);
 	}
 
 }
