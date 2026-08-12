@@ -1,6 +1,6 @@
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
 
 public class PlayerLockController : MonoBehaviour
 {
@@ -19,7 +19,6 @@ public class PlayerLockController : MonoBehaviour
     {
         _EventSystemController = EventSystemController.eventSystemController;
         _EventSystemController.onInteractWithLock += InteractLock;
-        _EventSystemController.onPuzzleCompleted += ExitLockOnComplete;
 
         _Player = Player.Instance;
 
@@ -47,27 +46,21 @@ public class PlayerLockController : MonoBehaviour
         InputManager.Instance.ReleasePiece.performed -= RelasePiece;
         InputManager.Instance.SelectPiece.performed -= SelectPiece;
 
-        _EventSystemController.onPuzzleCompleted -= ExitLockOnComplete;
     }
 
     private void InteractLock()
     {
         _Camera.SetActive(false);
-        _Player.FreezeCharacter(true);
+        _Player.FreezCharacter(true);
+        _Crosshair.SetActive(true);
     }
 
     private void ExitLock(InputAction.CallbackContext ctx)
     {
         _EventSystemController.ExitLock();
         _Camera.SetActive(true);
-        _Player.FreezeCharacter(false);
-    }
-
-
-    private void ExitLockOnComplete() {
-	    _EventSystemController.ExitLock();
-	    _Camera.SetActive(true);
-	    _Player.FreezeCharacter(false);
+        _Player.FreezCharacter(false);
+        _Crosshair.SetActive(false);
     }
 
     private void RotateLock(InputAction.CallbackContext ctx)
@@ -88,12 +81,10 @@ public class PlayerLockController : MonoBehaviour
 
         _CameraLock = LockInteractor.Instance._Camera;
 
-        if (Physics.Raycast(_CameraLock.transform.position, _CameraLock.transform.forward, out RaycastHit hit, _RayDistance, _DetectorLayerMask)) {
-	        if (hit.collider.TryGetComponent(out IInteractable interactable))
-		        interactable.Interact(_Player);
-        }
-        
-        
+        Physics.Raycast(_CameraLock.transform.position, _CameraLock.transform.forward, out RaycastHit hit, _RayDistance, _DetectorLayerMask);
+
+        if (hit.collider.TryGetComponent<IInteractable>(out IInteractable interactable))
+            interactable.Interact(GetComponentInParent<Player>());
     }
 
     private void OnDrawGizmos()

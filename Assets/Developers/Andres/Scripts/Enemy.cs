@@ -20,21 +20,14 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _LosePlayerTime = 1f;
     [SerializeField] private LayerMask _DetectionLayer;
 
-    [Header("---Distraction---")]
-    [SerializeField] private float _DistractionTime = 2f;
-
     private float _TimeSinceLostPlayer;
+
     private GameObject _Player;
-    private Transform _CurrentTarget;
 
     private Dictionary<States, UnityAction> _StateMachine;
 
     private States _CurrentState;
     private int _CurrentPoint;
-    
-
-    private bool _IsDistracted;
-    private float _DistractionTimer;
 
     private Coroutine _CurrentCoroutine;
 
@@ -72,7 +65,7 @@ public class Enemy : MonoBehaviour
 
         _StateMachine[_CurrentState].Invoke();
 
-        // Debug.Log($"Enemy current state: {_CurrentState}");
+        Debug.Log($"Enemy current state: {_CurrentState}");
     }
 
     private void Patrol()
@@ -80,10 +73,8 @@ public class Enemy : MonoBehaviour
         if (_CurrentCoroutine != null || _PatrolPoints.Count <= 0)
             return;
 
-        if (CheckDistanceWithPlayer() <= _ViewDistance && CanSeePlayer()) {
-	        _CurrentTarget = _Player.transform;
+        if(CheckDistanceWithPlayer() <= _ViewDistance && CanSeePlayer())
             _CurrentState = States.chasing;
-        }
 
         _Agent.speed = _PatrolSpeed;
 
@@ -91,35 +82,11 @@ public class Enemy : MonoBehaviour
             _CurrentCoroutine = StartCoroutine(StartPatrol());
     }
 
-    
     private void Chasing()
     {
-	    if (!_CurrentTarget) {
-		    _CurrentState = States.patrol;
-		    return;
-	    }
-	    
         _Agent.speed = _ChasingSpeed;
-        _Agent.SetDestination(_CurrentTarget.position);
+        _Agent.SetDestination(_Player.transform.position);
 
-        if (_IsDistracted) {
-	        if (!_Agent.pathPending && _Agent.remainingDistance <= _DistanceToPoint)
-	        {
-		        _DistractionTimer -= Time.deltaTime;
-
-		        if (_DistractionTimer <= 0f)
-		        {
-			        _IsDistracted = false;
-			        _CurrentTarget = null;
-			        
-			        GoToNextPoint();
-			        _CurrentState = States.patrol;
-		        }
-	        }
-
-	        return;
-        }
-        
         if (!CanSeePlayer())
         {
             _TimeSinceLostPlayer += Time.deltaTime;
@@ -197,16 +164,6 @@ public class Enemy : MonoBehaviour
         this.enabled = !status;
         _Agent.isStopped = !status; 
     }
-    
-    
-    public void Distract(Transform distraction)
-    {
-	    _CurrentTarget = distraction;
-	    _IsDistracted = true;
-	    _DistractionTimer = _DistractionTime;
-	    _CurrentState = States.chasing;
-    }
-
 
     private void OnDrawGizmos()
     {

@@ -2,12 +2,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private Button _StartBtn;
     [SerializeField] private Button _ExitBtn;
-    [SerializeField] private string sceneToLoadOnStart;
 
     private void Awake()
     {
@@ -17,8 +15,7 @@ public class MainMenu : MonoBehaviour
 
     private void OnStart()
     {
-        SceneManager.LoadScene(sceneToLoadOnStart);
-        Time.timeScale = 1f;
+        SceneManager.LoadScene("Grayboxing-v.1");
     }
 
     private void OnExit()

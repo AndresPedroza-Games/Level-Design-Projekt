@@ -19,7 +19,7 @@ public class FootstepSoundPlayer : MonoBehaviour {
 		if (audioSource.isPlaying) return;
 		
 		if ((interactionLayer.value & (1 << other.gameObject.layer)) != 0) {
-			audioSource?.Play();
+			audioSource.Play();
 		}
 	}
 

@@ -1,7 +1,7 @@
+using UnityEngine;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEngine;
-
+using UnityEngine.ProBuilder.Shapes;
 
 public class Lock : MonoBehaviour
 {
@@ -15,8 +15,6 @@ public class Lock : MonoBehaviour
 
     private List<int> _CurrentCombination = new List<int>();
     private Dictionary<int, int> _AngleToPassword = new Dictionary<int, int>();
-
-    private bool _isCompleted;
 
     private void Awake()
     {
@@ -44,12 +42,10 @@ public class Lock : MonoBehaviour
         };
     }
 
-    private void PuzzleCompleted() {
-	    if (_isCompleted)
-		    return;
-	    
-        if (CheckIfPuzzleCompleted()) {
-	        _isCompleted = true;
+    private void PuzzleCompleted()
+    {
+        if (CheckIfPuzzleCompleted())
+        {
             _EventSystemController.PuzzleCompleted();
             _Door.OpenDoor();
             Debug.Log("Puzzle Completed");

@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
     public Inventory Inventory { get; private set; }
 
     public GameObject _Camera;
-    public GameObject body;
 
     private void Awake()
     {
@@ -22,13 +21,13 @@ public class Player : MonoBehaviour
     {
         Inventory = GetComponent<Inventory>();
 
-        EventSystemController.eventSystemController.onEndGame += () => FreezeCharacter(true);
-        EventSystemController.eventSystemController.onRestart += () => FreezeCharacter(false);
+        EventSystemController.eventSystemController.onEndGame += () => FreezCharacter(true);
+        EventSystemController.eventSystemController.onRestart += () => FreezCharacter(false);
 
         _Camera = FindFirstObjectByType<CinemachineCamera>().gameObject;
     }
 
-    public void FreezeCharacter(bool status)
+    public void FreezCharacter(bool status)
     {
         if (status)
         {
