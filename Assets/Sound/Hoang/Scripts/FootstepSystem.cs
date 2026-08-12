@@ -38,39 +38,32 @@ public class FootstepSystem : MonoBehaviour
 
     private void HandleFootsteps()
     {
-        // Kein Sound, wenn der Spieler nicht am Boden ist
         if (!characterController.isGrounded)
         {
             distanceSinceLastStep = 0f;
             return;
         }
 
-        // Kein Sound, wenn der Spieler sich nicht bewegt
         if (playerController.MoveInput.magnitude <= 0.01f)
         {
             distanceSinceLastStep = 0f;
             return;
         }
 
-        // Geschwindigkeit des CharacterControllers
         Vector3 velocity = characterController.velocity;
         velocity.y = 0f;
 
         float currentSpeed = velocity.magnitude;
 
-        // Spieler bewegt sich praktisch nicht
         if (currentSpeed <= 0.01f)
             return;
 
-        // Zurückgelegte Strecke seit dem letzten Fußschritt
         distanceSinceLastStep += currentSpeed * Time.deltaTime;
 
-        // Unterschiedliche Schrittweite beim Laufen und Rennen
         float requiredDistance = playerController.IsRunning
             ? runStepDistance
             : walkStepDistance;
 
-        // Genug Strecke für einen neuen Fußschritt?
         if (distanceSinceLastStep >= requiredDistance)
         {
             PlayNextFootstep();
@@ -86,7 +79,6 @@ public class FootstepSystem : MonoBehaviour
 
         int randomIndex;
 
-        // Verhindert, dass derselbe Sound zweimal direkt hintereinander kommt
         do
         {
             randomIndex = Random.Range(0, footstepSounds.Length);
@@ -109,10 +101,8 @@ public class FootstepSystem : MonoBehaviour
             audioSource.PlayOneShot(clip, volume);
         }
 
-        // Speichert den zuletzt abgespielten Sound
         lastFootstepIndex = randomIndex;
 
-        // Abstand zurücksetzen
         distanceSinceLastStep = 0f;
     }
 }

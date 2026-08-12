@@ -14,6 +14,9 @@ GameObject:
   - component: {fileID: 1337575736838821342}
   - component: {fileID: 4446646936687162912}
   - component: {fileID: 1522543160703490095}
+  - component: {fileID: 5032507472522779097}
+  - component: {fileID: 2262226465333094684}
+  - component: {fileID: 9148807097746730819}
   m_Layer: 6
   m_Name: Key
   m_TagString: Untagged
@@ -156,6 +159,151 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Key
   keyData: {fileID: 11400000, guid: 107de0a0056a0984a961eeae34e8da87, type: 2}
   isGrabbed: 0
+--- !u!82 &5032507472522779097
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5398563719178217203}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &2262226465333094684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5398563719178217203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36992c93f2a79be42be8df34328dc05f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KeyImpactSound
+  impactSounds:
+  - {fileID: 8300000, guid: c12457225c2514447b60338c0cee21bd, type: 3}
+  - {fileID: 8300000, guid: 22ada50cd5524994ebec995abea59378, type: 3}
+  - {fileID: 8300000, guid: bf6f6a1b0b6d5be47bb8c3406da107fb, type: 3}
+  - {fileID: 8300000, guid: 3ddbed5988848854b88f49f30f0df5ff, type: 3}
+  - {fileID: 8300000, guid: d35e085bdc34ded45ac72a6960d68f40, type: 3}
+  - {fileID: 8300000, guid: 353a30461daf82b4299df0b7dc89707d, type: 3}
+  volume: 0.17
+  randomizePitch: 0
+  minPitch: 0.95
+  maxPitch: 1.05
+  minimumImpactVelocity: 1
+--- !u!114 &9148807097746730819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5398563719178217203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf1ddb93f59b9aa45accea2f97909039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KeyPickupSound
+  pickupSounds:
+  - {fileID: 8300000, guid: 6b48d963ed8d4cd40b4a1f642dfb7418, type: 3}
+  - {fileID: 8300000, guid: 60a8f3ffda2ea6e41ac2409ed4798cf2, type: 3}
+  - {fileID: 8300000, guid: 494644bfca6375545a6592a8953e89ac, type: 3}
+  - {fileID: 8300000, guid: 945138c5dc778294fa75c33fa5a32474, type: 3}
+  - {fileID: 8300000, guid: 52f04727ea0da3645b3377be7d267df3, type: 3}
+  - {fileID: 8300000, guid: 9c51cfe9e2b0fd24c97e535c41aa8bc1, type: 3}
+  - {fileID: 8300000, guid: 861d80a811494184a800e27b48f96dc6, type: 3}
+  volume: 0.31
+  randomizePitch: 0
+  minPitch: 0.95
+  maxPitch: 1.05
 --- !u!1001 &4163248360985614739
 PrefabInstance:
   m_ObjectHideFlags: 0
