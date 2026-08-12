@@ -6,8 +6,9 @@ public class Key : MonoBehaviour, IInteractable {
 
 	private Rigidbody rb;
 	private Collider col;
-	
-	public KeyDataSO keyData;
+    private KeyPickupSound pickupSound;
+
+    public KeyDataSO keyData;
 
     public bool isGrabbed;
 
@@ -16,6 +17,7 @@ public class Key : MonoBehaviour, IInteractable {
     private void Awake() {
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
+        pickupSound = GetComponent<KeyPickupSound>();
     }
 
  
@@ -25,7 +27,10 @@ public class Key : MonoBehaviour, IInteractable {
 		
 		DisablePhysics();
 		CanPickUp = false;
-		player.Inventory.AddItem(gameObject);
+
+        pickupSound?.PlayPickupSound();
+
+        player.Inventory.AddItem(gameObject);
 	}
 
     private void DisablePhysics() {
