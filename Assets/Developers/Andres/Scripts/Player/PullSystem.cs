@@ -8,13 +8,13 @@ public class PullSystem : MonoBehaviour
     [SerializeField] private Vector3 _HalfExtends;
     [SerializeField] private LayerMask _InteractableMask;
 
-    [SerializeField][Range(0.1f, 0.5f)] private float _Offset = 0.1f;
+    // [SerializeField][Range(0.1f, 0.5f)] private float _Offset = 0.1f;
 
     [Header("---Follow Speed---")]
     [SerializeField] private float _SmoothSpeed = 15f;
 
     [Header(("---Joint Break Config---"))]
-    [SerializeField] private float _BreakDistance = 2f;
+    // [SerializeField] private float _BreakDistance = 2f;
     [SerializeField] private float _JointLimit = 0.5f;
 
     [Header("---Joint Driver Config---")]
@@ -71,7 +71,6 @@ public class PullSystem : MonoBehaviour
 
     private void FixedUpdate()
     {
-        CheckJointState();
         MoveHoldPosition();
         UpdateRotation();
     }
@@ -117,20 +116,6 @@ public class PullSystem : MonoBehaviour
         Debug.Log("Release");
 
     }
-
-    private void CheckJointState()
-    {
-        if (!_CurrentHoldGameObject)
-            return;
-
-        float distance = Vector3.Distance(_InteractorCenterPos.position, _CurrentHoldGameObject.position);
-
-        if (distance > _BreakDistance)
-        {
-            //_holdable.Release();
-        }
-    }
-
 
     private void UpdateRotation()
     {

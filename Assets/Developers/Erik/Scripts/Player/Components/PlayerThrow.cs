@@ -6,6 +6,7 @@ public class PlayerThrow : MonoBehaviour {
 
 	[Header("---Throw Config---")]
 	[SerializeField] private float throwForce = 10f;
+	[SerializeField] private Transform throwPosition;
 
 	private Player player;
 	private Camera cam;
@@ -33,7 +34,7 @@ public class PlayerThrow : MonoBehaviour {
 
 		if (player.Inventory.CurrentHoldItem.TryGetComponent(out IThrowable throwable)) {
 			player.Inventory.DropItem();
-			throwable.Throw(cam.transform.forward, throwForce);
+			throwable.Throw(throwPosition.position, cam.transform.forward, throwForce);
 		}
 	}
 

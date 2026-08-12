@@ -10,13 +10,12 @@ public class SoundManager : MonoBehaviour {
 
 
 	private void Awake() {
-		if (Instance != null && Instance != this) {
+		if (Instance && Instance != this) {
 			Destroy(gameObject);
 			return;
 		}
-		else {
-			Instance = this;
-		}
+
+		Instance = this;
 
 		SetupAudioSources();
 	}

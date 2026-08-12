@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class LockInteractor : MonoBehaviour, IInteractable
 {
@@ -7,6 +8,7 @@ public class LockInteractor : MonoBehaviour, IInteractable
     private EventSystemController _EventSystemController;
 
     public static LockInteractor Instance;
+    private Player _Player;
 
     private void Awake()
     {
@@ -27,6 +29,8 @@ public class LockInteractor : MonoBehaviour, IInteractable
         _Camera.SetActive(true);
         gameObject.SetActive(false);
         GameManager.lockIsActive = true;
+        _Player = player;
+        _Player.body.SetActive(false);
     }
 
     public void ExitInteraction()
@@ -34,5 +38,7 @@ public class LockInteractor : MonoBehaviour, IInteractable
         _Camera.SetActive(false);
         gameObject.SetActive(true);
         GameManager.lockIsActive = false;
+        _Player.body.SetActive(true);
+
     }
 }

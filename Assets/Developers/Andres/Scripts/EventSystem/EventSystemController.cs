@@ -1,6 +1,9 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
+
+[DefaultExecutionOrder(-10)]
 public class EventSystemController : MonoBehaviour
 {
     public static EventSystemController eventSystemController;
@@ -38,6 +41,11 @@ public class EventSystemController : MonoBehaviour
     public void EndGame()
     {
         onEndGame?.Invoke();
+    }
+
+
+    public void LoadMainMenu() {
+	    SceneManager.LoadScene(0);
     }
 
     //Lock Events//
