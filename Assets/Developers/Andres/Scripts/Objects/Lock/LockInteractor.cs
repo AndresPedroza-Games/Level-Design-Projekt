@@ -38,7 +38,8 @@ public class LockInteractor : MonoBehaviour, IInteractable
         _Camera.SetActive(false);
         gameObject.SetActive(true);
         GameManager.lockIsActive = false;
-        _Player.body.SetActive(true);
+        if(_Player)
+			_Player.body.SetActive(true);
 
     }
 }
