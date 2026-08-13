@@ -272,7 +272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ThirdPersonAim
   cameraTarget: {fileID: 2472414723732080643}
-  mouseSensitivity: 10
+  mouseSensitivity: 5
   minPitch: -50
   maxPitch: 75
 --- !u!82 &7627937940648146290
@@ -1198,13 +1198,36 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2375231387491060215, guid: d77e1824b37002246904aa62a2fa6e82, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7938743104987678722}
   m_SourcePrefab: {fileID: 100100000, guid: d77e1824b37002246904aa62a2fa6e82, type: 3}
 --- !u!4 &6640715544416247005 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1125447982364237806, guid: d77e1824b37002246904aa62a2fa6e82, type: 3}
   m_PrefabInstance: {fileID: 6032267551232770867}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8304760018031020740 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2375231387491060215, guid: d77e1824b37002246904aa62a2fa6e82, type: 3}
+  m_PrefabInstance: {fileID: 6032267551232770867}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7938743104987678722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8304760018031020740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c8bca95f7c947b4db5fb152a0d693d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.cqf.urpvolumetricfog.runtime::VolumetricAdditionalLight
+  anisotropy: 0.25
+  scattering: 1
+  radius: 0.2
 --- !u!1001 &6746584155800367679
 PrefabInstance:
   m_ObjectHideFlags: 0
