@@ -24626,15 +24626,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5468271613205237030, guid: 45035ccd55ac95e408cfae08f2ce864f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 33.712
+      value: 33.678
       objectReference: {fileID: 0}
     - target: {fileID: 5468271613205237030, guid: 45035ccd55ac95e408cfae08f2ce864f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.437
+      value: 0.439
       objectReference: {fileID: 0}
     - target: {fileID: 5468271613205237030, guid: 45035ccd55ac95e408cfae08f2ce864f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.536
+      value: -5.692
       objectReference: {fileID: 0}
     - target: {fileID: 5468271613205237030, guid: 45035ccd55ac95e408cfae08f2ce864f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -32081,6 +32081,10 @@ PrefabInstance:
     - target: {fileID: 1750190911740119012, guid: 36ef6c6287d730849af716ad58f649ea, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5032507472522779097, guid: 36ef6c6287d730849af716ad58f649ea, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5398563719178217203, guid: 36ef6c6287d730849af716ad58f649ea, type: 3}
       propertyPath: m_Name
@@ -62252,6 +62256,14 @@ PrefabInstance:
     - target: {fileID: 3005057383783773604, guid: c7b3f48985465004db8c64aec6bea35f, type: 3}
       propertyPath: m_Name
       value: Clock
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682530707177255678, guid: c7b3f48985465004db8c64aec6bea35f, type: 3}
+      propertyPath: MaxDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682530707177255678, guid: c7b3f48985465004db8c64aec6bea35f, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5385469214077249368, guid: c7b3f48985465004db8c64aec6bea35f, type: 3}
       propertyPath: volume
