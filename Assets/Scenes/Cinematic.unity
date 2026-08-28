@@ -2750,11 +2750,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 123233461}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &124122398 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5627696518775099638, guid: 543d521d2176ace4aba4667ddca92d97, type: 3}
-  m_PrefabInstance: {fileID: 1010145780}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &127233505
 GameObject:
   m_ObjectHideFlags: 0
@@ -13142,7 +13137,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2144551823}
-  - {fileID: 1010145781}
   - {fileID: 113983155}
   - {fileID: 1610663375}
   - {fileID: 499038471}
@@ -24020,77 +24014,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1003434051}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &1010145780
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 518982856}
-    m_Modifications:
-    - target: {fileID: 5627696518775099638, guid: 543d521d2176ace4aba4667ddca92d97, type: 3}
-      propertyPath: m_Name
-      value: VFX_Zap_06_Red (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5627696518775099638, guid: 543d521d2176ace4aba4667ddca92d97, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8964859838461161948, guid: 543d521d2176ace4aba4667ddca92d97, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 35.48
-      objectReference: {fileID: 0}
-    - target: {fileID: 8964859838461161948, guid: 543d521d2176ace4aba4667ddca92d97, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.72
-      objectReference: {fileID: 0}
-    - target: {fileID: 8964859838461161948, guid: 543d521d2176ace4aba4667ddca92d97, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -38.57
-      objectReference: {fileID: 0}
-    - target: {fileID: 8964859838461161948, guid: 543d521d2176ace4aba4667ddca92d97, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9491307
-      objectReference: {fileID: 0}
-    - target: {fileID: 8964859838461161948, guid: 543d521d2176ace4aba4667ddca92d97, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.15959632
-      objectReference: {fileID: 0}
-    - target: {fileID: 8964859838461161948, guid: 543d521d2176ace4aba4667ddca92d97, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.0450108
-      objectReference: {fileID: 0}
-    - target: {fileID: 8964859838461161948, guid: 543d521d2176ace4aba4667ddca92d97, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.26768246
-      objectReference: {fileID: 0}
-    - target: {fileID: 8964859838461161948, guid: 543d521d2176ace4aba4667ddca92d97, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -19.09
-      objectReference: {fileID: 0}
-    - target: {fileID: 8964859838461161948, guid: 543d521d2176ace4aba4667ddca92d97, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8964859838461161948, guid: 543d521d2176ace4aba4667ddca92d97, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -31.5
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 543d521d2176ace4aba4667ddca92d97, type: 3}
---- !u!4 &1010145781 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8964859838461161948, guid: 543d521d2176ace4aba4667ddca92d97, type: 3}
-  m_PrefabInstance: {fileID: 1010145780}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &1010145782 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8538455091997576435, guid: 543d521d2176ace4aba4667ddca92d97, type: 3}
-  m_PrefabInstance: {fileID: 1010145780}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1012244317
 GameObject:
   m_ObjectHideFlags: 0
@@ -30802,7 +30725,7 @@ MonoBehaviour:
   - {fileID: 1032128755}
   - {fileID: 2029839896}
   - {fileID: 35323083}
-  - {fileID: 1010145782}
+  - {fileID: 0}
   _CoolDownLightingBolt: 15
 --- !u!4 &1262896587
 Transform:
@@ -42593,7 +42516,7 @@ PlayableDirector:
   - key: {fileID: 2433611002317063025, guid: addce196ba821004d9323abda7dc4758, type: 2}
     value: {fileID: 1360083446}
   - key: {fileID: -6407973313446578917, guid: addce196ba821004d9323abda7dc4758, type: 2}
-    value: {fileID: 124122398}
+    value: {fileID: 0}
   - key: {fileID: 7050572355543515849, guid: addce196ba821004d9323abda7dc4758, type: 2}
     value: {fileID: 1235555269}
   - key: {fileID: -2304437968552070250, guid: addce196ba821004d9323abda7dc4758, type: 2}
